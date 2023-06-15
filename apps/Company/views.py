@@ -33,8 +33,8 @@ def form_company(request):
     return render(request, 'Company/form_company.html', data)
 
 #Editar centro de trabajo
-def edit_company(request, id_company):
-    company= get_object_or_404(Company, id_company)
+def edit_company(request, id):
+    company= get_object_or_404(Company, id_company=id)
 
     data = {
         'form': CompanyForm(instance=company)
