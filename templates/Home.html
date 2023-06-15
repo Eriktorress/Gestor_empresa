@@ -83,7 +83,7 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                 data-bs-dismiss="modal">Seguir navegando</button>
-                                            <a href=""><button type="button" class="btn btn-danger">Cerrar sesión</button></a>
+                                            <a href="{% url 'signin' %}"><button type="button" class="btn btn-danger">Cerrar sesión</button></a>
                                         </div>
 
                                     </div>
@@ -127,7 +127,7 @@
                 </a>
 
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <li><a class="dropdown-item" href="{% url 'list_company' %}">Centros de trabajo</a></li>
+                    <li><a class="dropdown-item" href="{% url 'list_company' %}">Empresas</a></li>
                     <li><a class="dropdown-item" href="">Trabajadores</a></li>
                 </ul>
 
