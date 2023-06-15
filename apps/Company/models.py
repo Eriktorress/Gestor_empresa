@@ -16,5 +16,6 @@ class Company (models.Model):
     estado_company = models.ForeignKey(Estado, on_delete=models.PROTECT)
     
     def __str__(self) :
-        return f"{self.name_company} - {self.rut_company} {self.adress}"
+        return f"{self.name_company}"
+    
 
