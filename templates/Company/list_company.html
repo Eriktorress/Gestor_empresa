@@ -1,11 +1,7 @@
-<<<<<<< HEAD
-{% extends "base.html" %} 
-{% block js %}  <!-- bloque de JS--> 
-=======
-{% extends "base.html" %}
+{% extends "base.html" %}  {% block content %}
 
-{% block js %}  <!-- bloque de JS para eliminar una compañia--> 
->>>>>>> Rama_diseño
+{% block js %} 
+
 <script>
     function deletecompany(id_company) {
         Swal.fire({
@@ -29,7 +25,7 @@
 {% endblock %}
 
 
-{% block content %}
+
 
 <table style=" border: 30px solid rgb(255, 255, 255);" class="table table-striped table-hover table-responsive-sm">
      <!-- H1--> 
@@ -63,8 +59,6 @@
             <th scope="col"> Acciones</th>
         </tr>
     
-
-<<<<<<< HEAD
     <tbody>
         {% for Company in listado %}
         <tr>
@@ -86,31 +80,10 @@
             </td>
         </tr>
         {% endfor %}
-=======
-        <tbody>
-            {% for Company in listado %}
-            <tr>
-                <td>{{Company.id_company}}</td>
-                <td>{{Company.name_company}}</td>
-                <th>{{Company.rut_company}}</th>
-                <td>{{Company.adress}}</td>
-                <td>{{Company.comuna}}</td>
-                <td>{{Company.region}}</td>
-                <td>{{Company.phone}}</td>
-                <td>{{Company.email}}</td>
-                <td>{{Company.estado_company}}</td>
-                <td><a href="{% url 'edit_company' Company.id_company %}" class="btn btn-sm btn-block btn-info"><i class="icon ion-md-create"></i> Editar</a>
-                <a href="#" onclick="deletecompany ({{ Company.id_company }})"
-                        class="btn btn-sm btn-block btn-danger"><i class="icon ion-ios-trash"></i> Eliminar</a></td>
-                </td>
-            </tr>
-            {% endfor %}
->>>>>>> Rama_diseño
 
         </tbody>
         </table>
 
-<<<<<<< HEAD
 <footer>
     <div class="d-flex justify-content-center">
         <a href="{% url 'home' %}"> 
@@ -121,15 +94,7 @@
     </a>
     </div>
 </footer>
-=======
-    <footer>
-        <div class="d-flex justify-content-center">
-            <a href=""> <button type="button" type="button"
-                    class="btn btn-secondary"><i class="icon ion-md-arrow-back"></i> Volver</button></a>
-        </div>
-    </footer>
->>>>>>> Rama_diseño
 
-{% endblock %}
 
 </html>
+{% endblock %}
