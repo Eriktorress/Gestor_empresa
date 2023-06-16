@@ -5,6 +5,6 @@ from .models import Estado
 # Create your views here.
 
 
-class EstadocompanySerializer(viewsets.ModelViewSet):
-    queryset = Estado.objects.all()
-    serializer_class = EstadocompanySerializer
+#class EstadocompanySerializer(viewsets.ModelViewSet):
+#    queryset = Estado.objects.all()
+#    serializer_class = EstadocompanySerializer

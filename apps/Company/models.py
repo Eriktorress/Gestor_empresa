@@ -14,5 +14,10 @@ class Company (models.Model):
     estado_company = models.ForeignKey(Estado, on_delete=models.PROTECT)
     
     def __str__(self) :
+<<<<<<< HEAD
         return f"{self.name_company} - {self.rut_company}"
+=======
+        return f"{self.name_company}"
+    
+>>>>>>> DB-MySQL
 

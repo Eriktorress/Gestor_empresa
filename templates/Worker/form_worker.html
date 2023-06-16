@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<br>
+
+<div class="row">
+    <div class="col-12 col-md-6">
+        <h2>Formulario de Trabajador</h2>
+        <hr>
+        <form action="" method="post" class="/form_worker/">
+
+            {% csrf_token %}
+
+            {{form}}
+
+            <br>
+
+            <div class="d-flex">
+                <a href="{% url 'list_worker' %}">
+                    <button type="button" class="btn btn-secondary">Cancelar</button>
+                </a>
+                &nbsp;
+                <button type="submit" id="btnEnviar" class="btn btn-primary">Guardar</button>
+            </div>
+        </form>
+
+        {{ mensaje }}
+
+    </div>
+</div>
+
+{% endblock %}

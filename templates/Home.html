@@ -20,6 +20,7 @@
    
     
 </head>
+<<<<<<< HEAD
     <header >
         <!-- ICONO DEL DESPLEGABLE -->
         <div class="icon_menu" >
@@ -27,13 +28,125 @@
         </div>
         <!-- ****************************************** -->
         
+=======
+
+<body id="body">
+    <header id="header">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid" id="container">
+
+                <!-- ICONO DEL DESPLEGABLE -->
+                <div class="icon__menu" class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+                    <i class="icon ion-md-menu" id="btn_open"></i>
+                </div>
+                <!-- ****************************************** -->
+
+                <!-- BUSCADOR DE LA MITAD -->
+             
+                <!-- ******************************************* -->
+
+
+                <!-- USUARIO, CERRAR SESION, CANCELAR, AUTENTIFICADOR -->
+                <div class="d-flex" class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto ">
+                        <li class="nav-item dropdown ">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {% if user.is_authenticated %}
+                                <img src="{% static 'css/Imagenes/Icono.jpg' %}"
+                                    class="img-fluid rounded-circle avatar mr-2"> {{ user.username }}</a>
+                                {% endif %}
+
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Perfil</a>
+                                <div class="dropdown-divider"></div>
+                                <li>
+                                    <button class="dropdown-item" type="button" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal">Cerrar sesión</button>
+                                </li>
+                            </ul>
+
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+                                <div class="modal-dialog" role="document">
+
+                                    <div class="modal-content">
+
+                                        <div class="modal-header">
+
+                                            <h5 class="modal-title" id="exampleModalLabel">
+                                                ¿Está seguro que desea cerrar sesión?
+                                            </h5>
+
+                                            <button type="button" class="close" data-bs-dismiss="modal"
+                                                aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Seguir navegando</button>
+                                            <a href=""><button type="button" class="btn btn-danger">Cerrar sesión</button></a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- *****************************************************************************************************-->
+
+            </div>
+        </nav>
+>>>>>>> DB-MySQL
     </header>
         
 <body id="body">
 
+<<<<<<< HEAD
     <div class="menu__side" id="menu_side">
         <div class="name__page">
             <h2>Gestión Web</h2>
+=======
+    <!-- BARRA LATERAL DESPLEGABLE -->
+    <div class="d-flex">
+
+        <div id="sidebar-container" class="bg-primary">
+
+            <div class="logo">
+                <h4 class="text-light font-weight-bold ">GESTIÓN WEB</h4>
+            </div>
+
+            <div class="menu">
+                <!-- TABLERO -->
+                <a href="" class="d-block text-light p-4"><i class="icon ion-md-apps mr-2 lead"></i> Tablero </a>
+
+                <!-- CONFIGUARACION -->
+                <a href="#" class="d-block text-light p-4 btn btn-secondary dropdown-toggle" id="dropdownMenuButton"
+                    data-bs-toggle="dropdown"><i class="icon ion-md-construct mr-2 lead"></i> Configuración
+                </a>
+
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li><a class="dropdown-item" href="">Usuarios</a></li>
+                    <li><a class="dropdown-item" href="#">Perfil</a></li>
+                </ul>
+
+                <!-- ORGANIZACION -->
+                <a href="#" class="d-block text-light p-4 btn btn-secondary dropdown-toggle" id="dropdownMenuButton"
+                    data-bs-toggle="dropdown"><i class="icon ion-md-briefcase"></i> Organización
+                </a>
+
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li><a class="dropdown-item" href="{% url 'list_company' %}">Empresas</a></li>
+                    <li><a class="dropdown-item" href="{% url 'list_worker' %}">Trabajadores</a></li>
+                </ul>
+
+            </div>
+>>>>>>> DB-MySQL
         </div>
 
         <div class="options__menu">	
