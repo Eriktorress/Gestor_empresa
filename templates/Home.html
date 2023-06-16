@@ -1,67 +1,8 @@
-{% load static %}
+{% extends 'base.html' %} 
 
-<html lang="en">
+{% block content %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>Gestión Web</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <!-- link de llamado del css -->
-    <link rel="stylesheet" href="{% static 'admin/css/central.css' %}">
-
-    <meta name="viewport" content="width=device-width, shrink-to-fit=no">
-    
-     <!-- script iconos de la pagina www.fontawesome.com-->
-    <script src="https://kit.fontawesome.com/66e7b5da36.js" crossorigin="anonymous"></script>
-
-    <!-- link icono de pagina -->
-    <link rel="icon" type="image/x-icon" href="{% static 'admin/img/iluminati.png' %}"> 
-   
-    
-</head>
-    <header >
-        <!-- ICONO DEL DESPLEGABLE -->
-        <div class="icon_menu" >
-            <i class="fa-solid fa-bars" id="btn_open" ></i>
-        </div>
-        <!-- ****************************************** -->
-        
-    </header>
-        
-<body id="body">
-
-    <div class="menu__side" id="menu_side">
-        <div class="name__page">
-            <h2>Gestión Web</h2>
-        </div>
-
-        <div class="options__menu">	
-
-            <a href="#" class="selected">
-                <div class="option">
-                    <i class="fas fa-home"  title="Home"></i>
-                    <h4 >Home</h4>
-                </div>
-            </a>
-
-            <a href="#">
-                <div class="option">
-                    <i class="fa-solid fa-person" title="Trabajadores"></i>
-                    <h4>Trabajadores</h4>
-                </div>
-            </a>
-            
-            <a href="{% url 'list_company' %}">
-                <div class="option">
-                        <i class="fa-solid fa-city" title="Empresas"></i>
-                        <h4>Empresas</h4>
-                    </div>
-            </a>
-            
-        </div>
-    </div>
-
-    <script src="{% static 'admin/js/script.js' %}"></script>
-</body>
-</html>
+<div class="container">
+  <h1>PROXIMAMENTE</h1>
+</div>
+{% endblock %}
