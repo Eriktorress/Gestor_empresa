@@ -71,10 +71,7 @@
             <td>{{Company.phone}}</td>
             <td>{{Company.email}}</td>
             <td>{{Company.estado_company}}</td>
-            <td><a href="{% url 'edit_company' Company.id_company %}"  class="btn btn-sm btn-block btn-info"><i class="icon ion-md-create">
-                </i> 
-                 Editar
-               </a>
+            <td><a href="{% url 'edit_company' Company.id_company %}"  class="btn btn-sm btn-block btn-info"><ion-icon name="settings-outline"></ion-icon> Editar</a>
             <a href="#" onclick="deletecompany ({{ Company.id_company }})"
                     class="btn btn-sm btn-block btn-danger"><ion-icon name="trash-outline"></ion-icon> Eliminar</a></td>
             </td>
