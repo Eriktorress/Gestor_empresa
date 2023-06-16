@@ -1,0 +1,135 @@
+{% load static %}
+
+</head>
+<header id="header">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid" id="container">
+
+            <!-- NavBar -->
+            <!-- Icono Desplegable -->
+            <div class="icon_menu" >
+                <i class="fa-solid fa-bars" id="btn_open"></i>
+            </div>
+
+            <!-- Logout -->
+            <div class="d-flex" class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto ">
+                    <li class="nav-item dropdown ">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {% if user.is_authenticated %}
+                            <img src="{% static 'css/Imagenes/Icono.jpg' %}"
+                                class="img-fluid rounded-circle avatar mr-2"> {{ user.username }}</a>
+                            {% endif %}
+    
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">
+                                Perfil
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <li>
+                                <button class="dropdown-item" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">
+                                    Cerrar sesión
+                                </button>
+                            </li>
+                        </ul>
+    
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+    
+                                        <h5 class="modal-title" id="exampleModalLabel">
+                                            ¿Está seguro que desea cerrar sesión?
+                                        </h5>
+    
+                                        <button type="button" class="close" data-bs-dismiss="modal"
+                                            aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+    
+                                    </div>
+    
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">
+                                            Seguir navegando
+                                        </button>
+                                        <a href="{% url 'signin' %}">
+                                            <button type="button" class="btn btn-danger">
+                                            Cerrar sesión
+                                            </button>
+                                        </a>
+                                    </div>
+    
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+ <!-- SideBar --> 
+<body id="body">
+
+    <div class="menu__side" id="menu_side">
+        <div class="name__page">
+            <h2>Gestión Web</h2>
+        </div>
+
+        <div class="options__menu">
+
+            <br>
+           <!-- Dashboard --> 
+            <div> <a href="{% url 'home' %}" class="d-block text-light p-1"/>
+                <i class="icon ion-md-apps mr-2 lead"></i> 
+                Dashboard 
+            </div>
+           <!-- Configuración --> 
+            <a class="d-block text-light p-1" title="Organización"
+                data-bs-toggle="collapse"
+                role="button" 
+                data-bs-target="#collapseExample1" 
+                aria-expanded="false"
+                aria-controls="collapseExample1">
+                
+                <i class="icon ion-md-construct mr-2 lead"></i> 
+                Configuración
+           </a>
+            </p>
+              <div class="collapse " id="collapseExample1"aria-labelledby="dropdownMenuButton">
+                <div class="card card-body">
+                    <li><a style="color:black" class="dropdown-item" href="#">Usuarios</a></li>
+                    <li><a style="color:black" class="dropdown-item" href="#">Perfil</a></li>
+                </div>
+              </div>
+            <!-- Organizacion --> 
+            <div class="d-block text-light p-1" title="Organización"
+                 data-bs-toggle="collapse"
+                 role="button" 
+                 data-bs-target="#collapseExample" 
+                 aria-expanded="false"
+                 aria-controls="collapseExample">
+            
+                <i class="icon ion-md-briefcase"></i> 
+                Organización
+           </div>
+           </p>
+           <div class="collapse " id="collapseExample"aria-labelledby="dropdownMenuButton">
+             <div class="card card-body">
+                <li><a style="color:black" class="dropdown-item" href="{% url 'list_company' %}">Empresas</a></li>
+                <li><a style="color:black" class="dropdown-item" href="{% url 'list_workplace' %}">Centros de trabajo</a></li>
+                <li><a style="color:black" class="dropdown-item" href="">Trabajadores</a></li>
+             </div>
+           </div>
+
+        </div>
+    </div>
+
+</body>
+
