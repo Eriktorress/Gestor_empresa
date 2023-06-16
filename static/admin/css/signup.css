@@ -1,0 +1,18 @@
+.container{
+    margin-top: 50px;
+    margin-right: 0px;
+}
+
+.container .button{
+    background: green;
+    margin-top: 30px;
+    width: 100%;
+    padding: 10px 0;
+    border-radius: 10px;
+
+}
+.login_signup{
+    font-size: 15px;
+    text-align: center;
+    margin-top: 15px;
+}
