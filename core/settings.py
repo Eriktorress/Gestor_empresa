@@ -27,12 +27,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.Company',
     'apps.Estado',
-<<<<<<< HEAD
     'apps.Workplace',
-=======
-    'apps.Worker',
->>>>>>> DB-MySQL
     'crispy_forms',
+    'apps.Worker',
 ]
 
 MIDDLEWARE = [
