@@ -1,6 +1,6 @@
-{% load static %}
+{% extends 'base.html' %} 
 
-<html lang="en">
+{% block content %}
 
 <head>
     <meta charset="UTF-8">
@@ -65,3 +65,7 @@
     <script src="{% static 'admin/js/script.js' %}"></script>
 </body>
 </html>
+<div class="container">
+  <h1>PROXIMAMENTE</h1>
+</div>
+{% endblock %}
