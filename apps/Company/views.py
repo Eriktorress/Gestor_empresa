@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from django.shortcuts import render
 from .models import Company
+from apps.Workplace.models import Workplace
 from .forms import CompanyForm
 from django.contrib import messages
 
@@ -33,6 +34,7 @@ def form_company(request):
     return render(request, 'Company/form_company.html', data)
 
 #Editar centro de trabajo
+
 def edit_company(request, id):
     company= get_object_or_404(Company, id_company=id)
 
@@ -51,6 +53,8 @@ def edit_company(request, id):
     
     return render (request, 'Company/edit_company.html', data)
 
+
+
 #Editar eliminar centro
 
 def delet_company(request, id):
@@ -58,3 +62,35 @@ def delet_company(request, id):
     company.delete()
     messages.success(request, "Eliminado correctamente")
     return redirect(to="list_company")
+
+
+#Filtrado de centro
+
+def company_workplaces(request, company_id):
+    company = get_object_or_404(Company, id=company_id)
+    workplaces = Workplace.objects.filter(id_company=company_id)
+    
+    context = {
+        'company': company,
+        'workplaces': workplaces,
+    }
+    
+    return render(request, 'company_workplaces.html', context)
+
+#prueba
+
+def edit_company2(request, id):
+    company = Company.objects.get(company_id=id)
+    if request.method == 'POST':
+        form = CompanyForm(request.POST, instance=company)
+        if form.is_valid():
+            form.save()
+            return redirect('company_details', company_id=id)
+    else:
+        form = CompanyForm(instance=company)
+    
+    context = {
+        'form': form,
+        'company_id': id,
+    }
+    return render(request, 'edit_company.html', context)
