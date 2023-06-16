@@ -32,11 +32,7 @@
                 <!-- ****************************************** -->
 
                 <!-- BUSCADOR DE LA MITAD -->
-                <form class="d-flex position-relative d-inline-block">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar">
-                    <button class="btn btn-search position-absolute" type="submit"><i
-                            class="icon ion-md-search"></i></button>
-                </form>
+             
                 <!-- ******************************************* -->
 
 
@@ -127,8 +123,8 @@
                 </a>
 
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <li><a class="dropdown-item" href="{% url 'list_company' %}">Centros de trabajo</a></li>
-                    <li><a class="dropdown-item" href="">Trabajadores</a></li>
+                    <li><a class="dropdown-item" href="{% url 'list_company' %}">Empresas</a></li>
+                    <li><a class="dropdown-item" href="{% url 'list_worker' %}">Trabajadores</a></li>
                 </ul>
 
             </div>
