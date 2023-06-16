@@ -1,22 +1,26 @@
-<!DOCTYPE html>
 <html>
+
   <head>
     {% load static %}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{% static 'admin/css/signup.css' %}">
   </head>
- <body>
+
+ <body class="body">
     <div class="container">
       <div class="row">
         <div class="col-12 col-md-6 offset-med-3">
           <div class="card">
             <div class="card-body">
               <h1>Registrar cuenta</h1>
+              <hr>
                 {{error}}
 
                 <form action="/signup/" method="POST">
-                  {% csrf_token %} {{form.as_p}}
+                  {% csrf_token %} 
+                  {{form.as_p}}
+                  
                   <button class="btn btn-primary">Registrar</button>
                   <a href="{% url 'signin' %}">
                     <button type="button" class="btn btn-secondary">Cancelar</button>
@@ -31,7 +35,8 @@
 
       </div>
     </div>
-  
+
+    <section class="home"></section>
  </body>
 </html>
 

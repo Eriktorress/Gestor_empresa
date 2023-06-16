@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html>
 
   <head>
@@ -8,16 +8,17 @@
     <link rel="stylesheet" href="{% static 'admin/css/signin.css' %}">
   </head>
 
-  <body id="body">
+  <body class="body">
     <div class="container">
       <div class="row">
           <div class="col-12 col-md-6 offset-med-3">
             <div class="card">
               <div class="card-body">
                 <h1>Iniciar Sesión</h1>
+                <hr>
                     {{error}}
                   
-                <hr>
+               
                 <form action="/signin/" >
                   {% csrf_token %}
                   {{form.as_p}}
@@ -25,8 +26,6 @@
                   <button class="button">Ingresar</button>
                   <div class="login_signup">Aun no tienes cuenta ? <a href="{% url 'signup' %}">Registrate </a></div>
                 </form>
-
-
 
               </div>
 

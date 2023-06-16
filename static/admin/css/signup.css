@@ -16,3 +16,13 @@
     text-align: center;
     margin-top: 15px;
 }
+.body{
+    position: relative;
+    width: 100%;
+    background-image:url("/static/admin/img/fondo3.jpeg") ;
+    background-size: cover;
+}
+
+.card{
+    background-color: #478ed173;
+}
