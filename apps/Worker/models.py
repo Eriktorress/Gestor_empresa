@@ -17,6 +17,7 @@ class Worker (models.Model):
     id_company = models.ForeignKey(Company, on_delete=models.PROTECT)
     
     
+    
     def __str__(self) :
         return f"{self.name_worker}"
     
