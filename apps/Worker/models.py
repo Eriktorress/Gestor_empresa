@@ -4,6 +4,7 @@ from apps.Estado.models import Estado
 from apps.Generoworker.models import Generoworker
 from apps.Workplace.models import Workplace
 from apps.Discapacidad.models import Discapacidad
+from apps.Tipodiscapacidad.models import Tipodiscapacidad
 import email 
 
 
@@ -23,9 +24,9 @@ class Worker (models.Model):
     id_Genworker = models.ForeignKey(Generoworker,verbose_name='Género', on_delete=models.PROTECT)
     id_workplace = models.ForeignKey(Workplace,verbose_name='Centro',on_delete=models.PROTECT)
     id_Discapacidad = models.ForeignKey(Discapacidad,verbose_name='Tiene Alguna DIscapacidad',on_delete=models.PROTECT)
-    #id_tipo_discapacidad
-    #fec_nac
-    #fec_ing
+    id_tipo_discapacidad = models.ForeignKey(Tipodiscapacidad,verbose_name='Indique la que corresponda',on_delete=models.PROTECT)
+    #fec_nac = models.DateField(verbose_name='Fecha de Nacimiento')
+    #fec_ing = models.DateField(verbose_name='Fecha de Ingreso')
     
     
     
