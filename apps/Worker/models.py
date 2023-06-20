@@ -3,6 +3,7 @@ from apps.Company.models import Company
 from apps.Estado.models import Estado
 from apps.Generoworker.models import Generoworker
 from apps.Workplace.models import Workplace
+from apps.Discapacidad.models import Discapacidad
 import email 
 
 
@@ -21,7 +22,7 @@ class Worker (models.Model):
     estado_worker = models.ForeignKey(Estado, on_delete=models.PROTECT,null=True)
     id_Genworker = models.ForeignKey(Generoworker, on_delete=models.PROTECT,null=True)
     id_workplace = models.ForeignKey(Workplace,on_delete=models.PROTECT,null=True,)
-    #discapacidad = models.CharField(verbose_name='Tiene Alguna Discapacidad',max_length=1)
+    id_Discapacidad = models.ForeignKey(Discapacidad,on_delete=models.PROTECT,null=True,)
     #id_discapacidad
     #fec_nac
     #fec_ing
