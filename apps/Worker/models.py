@@ -17,13 +17,13 @@ class Worker (models.Model):
     region = models.CharField(verbose_name='Región',max_length=20)
     comuna = models.CharField(verbose_name='Comuna',max_length=20)
     phone = models.CharField(verbose_name='Teléfono',max_length=10)
-    email = models.EmailField ()
-    id_company = models.ForeignKey(Company, on_delete=models.PROTECT)
-    estado_worker = models.ForeignKey(Estado, on_delete=models.PROTECT,null=True)
-    id_Genworker = models.ForeignKey(Generoworker, on_delete=models.PROTECT,null=True)
-    id_workplace = models.ForeignKey(Workplace,on_delete=models.PROTECT,null=True,)
-    id_Discapacidad = models.ForeignKey(Discapacidad,on_delete=models.PROTECT,null=True,)
-    #id_discapacidad
+    email = models.EmailField (verbose_name='Email')
+    id_company = models.ForeignKey(Company,verbose_name='Empresa', on_delete=models.PROTECT)
+    estado_worker = models.ForeignKey(Estado,verbose_name='Estado', on_delete=models.PROTECT)
+    id_Genworker = models.ForeignKey(Generoworker,verbose_name='Género', on_delete=models.PROTECT)
+    id_workplace = models.ForeignKey(Workplace,verbose_name='Centro',on_delete=models.PROTECT)
+    id_Discapacidad = models.ForeignKey(Discapacidad,verbose_name='Tiene Alguna DIscapacidad',on_delete=models.PROTECT)
+    #id_tipo_discapacidad
     #fec_nac
     #fec_ing
     
