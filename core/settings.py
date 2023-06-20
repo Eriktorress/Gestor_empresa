@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'apps.Workplace',
     'crispy_forms',
     'apps.Worker',
+    'apps.Generoworker',
 ]
 
 MIDDLEWARE = [

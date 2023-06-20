@@ -1,5 +1,8 @@
 from django.db import models
 from apps.Company.models import Company
+from apps.Estado.models import Estado
+from apps.Generoworker.models import Generoworker
+from apps.Workplace.models import Workplace
 import email 
 
 
@@ -15,6 +18,13 @@ class Worker (models.Model):
     phone = models.CharField(verbose_name='Teléfono',max_length=10)
     email = models.EmailField ()
     id_company = models.ForeignKey(Company, on_delete=models.PROTECT)
+    estado_worker = models.ForeignKey(Estado, on_delete=models.PROTECT,null=True)
+    id_Genworker = models.ForeignKey(Generoworker, on_delete=models.PROTECT,null=True)
+    id_workplace = models.ForeignKey(Workplace,on_delete=models.PROTECT,null=True,)
+    #discapacidad = models.CharField(verbose_name='Tiene Alguna Discapacidad',max_length=1)
+    #id_discapacidad
+    #fec_nac
+    #fec_ing
     
     
     

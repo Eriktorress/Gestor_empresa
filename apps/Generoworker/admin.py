@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import Generoworker
 
-# Register your models here.
+class GeneroworkerAdmin (admin.ModelAdmin):
+    list_display = ('name',)
+
+admin.site.register(Generoworker,GeneroworkerAdmin)
