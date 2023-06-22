@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, re_path, include
 from apps.Company.views import delet_company, form_company,list_company,edit_company,\
-    home, company_workplaces
+    home, company_workplaces,company_workers
 from apps.Users.views import signup,signout, signin
 from apps.Workplace.views import list_workplace,form_workplace, edit_workplace,\
     delet_workplace
@@ -17,9 +17,10 @@ urlpatterns = [
     path ('List_company/', list_company, name='list_company'),
     path ('Form_company/', form_company, name='form_company'),
     path ('Delete_company/<id>/', delet_company, name='delet_company'),
-    path('Edit_company/<id>/', edit_company, name='edit_company'),
-    
-    path('company/<id>/', company_workplaces, name='company_workplaces'),
+    path('Edit_company/<int:id>/', edit_company, name='edit_company'),
+
+    path('company_workplaces/<int:company_id>/', company_workplaces, name='company_workplaces'),
+    path('company_workers/<int:company_id>/', company_workers, name='company_workers'),
 
     #-------- Users --------
     path('logout/', signout, name='logout'),

@@ -1,4 +1,3 @@
-
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
@@ -7,27 +6,28 @@
 
 <ul class="nav nav-tabs">
     <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="#">Datos de la empresa</a>
-    </li>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Trabajadores de la empresa</a>
+        <a class="nav-link active" aria-current="page" href="#">Datos de la empresa</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        <a class="nav-link" href="{% url 'company_workplaces' company.id_company %}">Centros de trabajo</a>
+    </li>    
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'company_workers' company.id_company %}">Trabajadores</a>
     </li>
-  </ul>
+</ul>
 
 
 <div class="row">
     <div class="col-12 col-md-6">
-        <h2>Editar de empresa</h2>
+        <h1 style=" border: 30px solid rgb(255, 255, 255);">
+            {{ company.name_company }}
+         </h1>
         <hr>
         <form action="" method="post" class="/form_company/">
 
             {% csrf_token %}
 
-            {{form}}
+            {{ form }}
 
             <br>
 
@@ -36,7 +36,7 @@
                     <button type="button" class="btn btn-secondary">Cancelar</button>
                 </a>
                 &nbsp;
-                <button type="submit" class="btn btn-primary">Editar</button>
+                <button type="submit" class="btn btn-primary">Guardar</button>
             </div>
         </form>
 
@@ -44,5 +44,4 @@
 
     </div>
 </div>
-
 {% endblock %}
