@@ -1,16 +1,16 @@
+*{
+    font-family: "Trirong", serif;
+}
+
+.titulo{
+    margin-left: 170px;
+}
+
 .container{
-    margin-top: 50px;
+    margin-top: 100px;
     margin-right: 0px;
 }
 
-.container .button{
-    background: green;
-    margin-top: 30px;
-    width: 100%;
-    padding: 10px 0;
-    border-radius: 10px;
-
-}
 .login_signup{
     font-size: 15px;
     text-align: center;
@@ -24,5 +24,45 @@
 }
 
 .card{
-    background-color: #478ed173;
+    background-color: #478ed12d;
+    border-radius: 50px;
 }
+
+.form-group-name{
+    margin-left: 145px;
+    margin-top: 50px;
+    font-size: 20px;
+}
+
+.form-group-pass1{
+    margin-left: 110px;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.form-group-pass2{
+    margin-left: 10px;
+    margin-top: 20px;
+    font-size: 20px;
+}
+.button{
+    margin-top: 30px;
+    margin-left: 170px;
+    border-radius: 10px;
+    padding: 5px 30px;
+    background: rgba(151, 221, 233, 0.363);
+}
+.btn-secondary{
+    margin-left: 15px;
+    padding: 5px 30px;
+}
+
+
+
+
+
+
+
+
+
+

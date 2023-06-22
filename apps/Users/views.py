@@ -18,7 +18,7 @@ def signup(request):
                     request.POST["username"], password=request.POST["password1"])
                 user.save()
                 login(request, user)
-                return redirect('home')
+                return redirect('signin')
             except IntegrityError:
                 return render(request, 'signup.html', {"form": UserCreationForm, "error": "Username already exists."})
 
@@ -35,6 +35,7 @@ def signin(request):
     else:
         user = authenticate(
             request, username=request.POST['username'], password=request.POST['password'])
+            
         if user is None:
             return render(request, 'signin.html', {"form": AuthenticationForm, "error": "Username or password is incorrect."})
 
