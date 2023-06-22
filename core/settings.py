@@ -33,6 +33,8 @@ INSTALLED_APPS = [
     'apps.Generoworker',
     'apps.Discapacidad',
     'apps.Tipodiscapacidad',
+    'apps.Tipodocumento',
+    'apps.WorkerDocuments',
 ]
 
 MIDDLEWARE = [

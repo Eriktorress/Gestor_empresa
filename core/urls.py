@@ -6,12 +6,14 @@ from apps.Users.views import signup,signout, signin
 from apps.Workplace.views import list_workplace,form_workplace, edit_workplace,\
     delet_workplace
 from apps.Worker.views import list_worker, form_worker,edit_worker,delet_worker
+from apps.WorkerDocuments.views import documents
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     
     path ('', home, name='home'),
+    
     
     #-------- Commpany --------
     path ('List_company/', list_company, name='list_company'),
@@ -38,5 +40,8 @@ urlpatterns = [
     path ('Form_worker/', form_worker, name='form_worker'),
     path ('Edit_worker/<id>/', edit_worker, name='edit_worker'),
     path ('Delete_worker/<id>/', delet_worker, name='delet_worker'),
+    
+    #-----WorkerDocuments-----
+    path ('Documents/', documents, name='documents'),
     
 ]

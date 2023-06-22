@@ -25,9 +25,8 @@ class Worker (models.Model):
     id_workplace = models.ForeignKey(Workplace,verbose_name='Centro',on_delete=models.PROTECT)
     id_Discapacidad = models.ForeignKey(Discapacidad,verbose_name='Tiene Alguna Discapacidad',on_delete=models.PROTECT)
     id_tipo_discapacidad = models.ForeignKey(Tipodiscapacidad,verbose_name='Indique la que corresponda',on_delete=models.PROTECT)
-    fec_nac = models.DateField(verbose_name='Fecha de Nacimiento (Formato año/mes-dia)',null=True)
-    fec_ing = models.DateField(verbose_name='Fecha de Ingreso (Formato año/mes-dia)',null=True)
-    
+    fec_nac = models.DateField(verbose_name='Fecha de Nacimiento (Formato año/mes/dia)',null=True)
+    fec_ing = models.DateField(verbose_name='Fecha de Ingreso (Formato año/mes/dia)',null=True)
     
     
     def __str__(self) :
