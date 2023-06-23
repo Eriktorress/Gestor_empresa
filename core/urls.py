@@ -11,7 +11,10 @@ from apps.Worker.views import list_worker, form_worker,edit_worker,delet_worker
 urlpatterns = [
     path('admin/', admin.site.urls),
     
-    path ('', home, name='home'),
+    #-------- Users --------
+    path('signin/', signin, name='signin'),
+    path('logout/', signout, name='logout'),
+    path('signup/', signup, name='signup'),
     
     #-------- Commpany --------
     path ('List_company/', list_company, name='list_company'),
@@ -21,10 +24,6 @@ urlpatterns = [
     
     path('company/<id>/', company_workplaces, name='company_workplaces'),
 
-    #-------- Users --------
-    path('logout/', signout, name='logout'),
-    path('signin/', signin, name='signin'),
-    path('signup/', signup, name='signup'),
 
    #-------- Centros --------
 
@@ -38,5 +37,7 @@ urlpatterns = [
     path ('Form_worker/', form_worker, name='form_worker'),
     path ('Edit_worker/<id>/', edit_worker, name='edit_worker'),
     path ('Delete_worker/<id>/', delet_worker, name='delet_worker'),
+
+    path ('', home, name='home'),
     
 ]

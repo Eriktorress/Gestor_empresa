@@ -19,6 +19,7 @@
     padding: 10px 0;
     border-radius: 20px;
     margin-left: 140px;
+    color: black;
 }
 
 .body{
@@ -30,7 +31,7 @@
 }
 
 .card{
-    background-color: #478ed12d;
+    background-color: #dae2eb7e;
     border-radius: 50px;
 }
 
@@ -47,12 +48,12 @@
 }
 
 .login-signup{
-    font-size: 15px;
+    font-size: 19px;
     text-align: center;
     margin-top: 20px;
     color: black;
 
 }
 .registrate{
-    color: blueviolet;
+    
 }
