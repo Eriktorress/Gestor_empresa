@@ -30,6 +30,11 @@ INSTALLED_APPS = [
     'apps.Workplace',
     'crispy_forms',
     'apps.Worker',
+    'apps.Generoworker',
+    'apps.Discapacidad',
+    'apps.Tipodiscapacidad',
+    'apps.Tipodocumento',
+    'apps.WorkerDocuments',
 ]
 
 MIDDLEWARE = [
@@ -72,6 +77,14 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+'''
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+'''
 
 #DATABASES = {
 #        'default': {
@@ -115,12 +128,10 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
 LANGUAGE_CODE = 'es'
-
 TIME_ZONE = 'America/Santiago'
-
 USE_I18N = True
-
 USE_TZ = True
+#DATE_INPUT_FORMATS = ['%d-%m-%y']
 
 
 # Static files (CSS, JavaScript, Images)

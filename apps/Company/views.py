@@ -2,20 +2,20 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.shortcuts import render
 from .models import Company
 from apps.Workplace.models import Workplace
+from apps.Worker.models import Worker
 from .forms import CompanyForm
 from django.contrib import messages
 
-# Create your views here.
-
-def home(request):  #PAGINA 1
+#Home
+def home(request):
     return render(request, 'home.html')
 
-#Listar company de trabajos
+#Listar empresa
 def list_company(request):
     listado = Company.objects.all();
     return render(request, 'Company/list_company.html', {'listado':listado})
 
-#Formulario centro de trabajo
+#Formulario empresa
 def form_company(request):
 
     data = {
@@ -33,29 +33,7 @@ def form_company(request):
             data["form"] = formulario2
     return render(request, 'Company/form_company.html', data)
 
-#Editar centro de trabajo
-
-def edit_company(request, id):
-    company= get_object_or_404(Company, id_company=id)
-
-    data = {
-        'form': CompanyForm(instance=company)
-    }
-    
-    if request.method == 'POST':
-        formulario2 = CompanyForm (data=request.POST, instance=company)
-        if formulario2.is_valid():
-            formulario2.save()
-            messages.success(request, "Modificado correctamente")
-            return redirect(to="list_company")
-        data["form"] = formulario2
-
-    
-    return render (request, 'Company/edit_company.html', data)
-
-
-
-#Editar eliminar centro
+#Eliminar empresa
 
 def delet_company(request, id):
     company = get_object_or_404(Company, id_company=id)
@@ -63,34 +41,46 @@ def delet_company(request, id):
     messages.success(request, "Eliminado correctamente")
     return redirect(to="list_company")
 
-
-#Filtrado de centro
-
-def company_workplaces(request, company_id):
-    company = get_object_or_404(Company, id=company_id)
-    workplaces = Workplace.objects.filter(id_company=company_id)
-    
-    context = {
-        'company': company,
-        'workplaces': workplaces,
-    }
-    
-    return render(request, 'company_workplaces.html', context)
-
-#prueba
-
-def edit_company2(request, id):
-    company = Company.objects.get(company_id=id)
+#Editar empresa 
+def edit_company(request, id):
+    company = get_object_or_404(Company, id_company=id)
+    workplaces = Workplace.objects.filter(id_company=id)
+    workers = Worker.objects.filter(id_company=id)
     if request.method == 'POST':
         form = CompanyForm(request.POST, instance=company)
         if form.is_valid():
             form.save()
-            return redirect('company_details', company_id=id)
+            messages.success(request, "Modificado correctamente")
+            return redirect('list_company')
     else:
         form = CompanyForm(instance=company)
-    
     context = {
         'form': form,
-        'company_id': id,
+        'company': company,
+        'workplaces': workplaces,
+        'workers': workers
     }
-    return render(request, 'edit_company.html', context)
+    return render(request, 'Company/edit_company.html', context)
+
+
+#Filtrado de centros de la empresa 
+
+def company_workplaces(request, company_id):
+    company = get_object_or_404(Company, id_company=company_id)
+    workplaces = Workplace.objects.filter(id_company=company_id)
+    context = {
+        'company': company,
+        'workplaces': workplaces,
+    }
+    return render(request, 'Company/company_workplaces.html', context)
+
+
+#Filtrado de trabajadores de la empresa 
+def company_workers(request, company_id):
+    company = get_object_or_404(Company, id_company=company_id)
+    workers = Worker.objects.filter(id_company=company_id)
+    context = {
+        'company': company,
+        'workers': workers,
+    }
+    return render(request, 'Company/company_workers.html', context)

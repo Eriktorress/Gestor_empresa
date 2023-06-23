@@ -75,9 +75,12 @@
             <td>{{Worker.comuna}}</td>
             <td>{{Worker.phone}}</td>
             <td>{{Worker.email}}</td>
-            <td><a href="{% url 'edit_worker' Worker.id_worker %}" class="btn btn-sm btn-block btn-info"><ion-icon name="settings-outline"></ion-icon> Editar</a>
+            <td><a href="{% url 'edit_worker' Worker.id_worker %}" 
+                class="btn btn-sm btn-block btn-info">
+                <ion-icon name="settings-outline"></ion-icon> Editar</a>
             <a href="#" onclick="deleteworker ({{ Worker.id_worker }})"
-                    class="btn btn-sm btn-block btn-danger"><ion-icon name="trash-outline"></ion-icon> Eliminar</a></td>
+                class="btn btn-sm btn-block btn-danger">
+                <ion-icon name="trash-outline"></ion-icon> Eliminar</a></td>
             </td>
         </tr>
         {% endfor %}
