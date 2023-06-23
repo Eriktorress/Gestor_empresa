@@ -8,7 +8,7 @@ class WorkerDocuments (models.Model):
     #id_tipo_doc = models.ForeignKey(Tipodocumento,on_delete=models.PROTECT)
     name = models.CharField(verbose_name='Nombre',max_length=100)
     imagen = models.ImageField(upload_to='imagenes/',verbose_name="Imagen",null=True)
-    descripcion = models.TextField(verbose_name='Descripción',null=True)
+    descripcion = models.TextField(verbose_name='Descripción')
 
     
     
