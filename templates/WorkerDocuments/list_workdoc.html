@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block js %}  <!-- bloque de JS--> 
 <script>
-    function deleteworker(id_worker) {
+    function deleteworkdoc(id) {
         Swal.fire({
             title: '¿Estas seguro?',
             text: "Esta acción no se puede deshacer!",
@@ -14,7 +14,7 @@
         })
         .then(function(result) {
             if (result.isConfirmed) {
-                window.location.href = "/Delete_worker/"+id_worker+"/"
+                window.location.href = "/Delet_workdoc/"+id+"/"
             }
         })
 
@@ -30,16 +30,17 @@
 
 {% block content %}
 
-<table style=" border: 30px solid rgb(255, 255, 255);" class="table table-striped table-hover table-responsive-sm">
+<table style=" border: 30px solid rgb(255, 255, 255);" 
+class="table table-striped table-hover table-responsive-sm">
      <!-- H1--> 
-    <h1 style=" border: 30px solid rgb(255, 255, 255);">Listado de Trabajadores</h1>
+    <h1 style=" border: 30px solid rgb(255, 255, 255);">Listado de documentos</h1>
 
     <thead class="table-dark">  
 <hr>
 
 <!-- boton de Nuevo centro-->
 <div  style="border-right: 30px solid rgb(255, 255, 255);" class="d-grid gap-2 d-md-flex justify-content-md-end">
-    <a href="{% url 'form_worker'%}"><button type="button" class="btn btn-success"><ion-icon name="person-add-outline"></ion-icon> Añadir </button></a>
+    <a href="{% url 'form_workdoc'%}"><button type="button" class="btn btn-success"><ion-icon name="person-add-outline"></ion-icon> Añadir </button></a>
     
   </div>
 
@@ -51,36 +52,27 @@
 </section>
         <tr>
             <th scope="col"> Id</th>
-            <th scope="col"> Nombres</th>
-            <th scope="col"> Apellidos </th>
-            <th scope="col"> RUT</th>
-            <th scope="col"> Dirección</th>
-            <th scope="col"> Región</th>
-            <th scope="col"> Comuna</th>
-            <th scope="col"> Teléfono</th>
-            <th scope="col"> Email</th>
+            <th scope="col"> Nombre</th>
+            <th scope="col"> Imagen </th>
+            <th scope="col"> Descripción</th>
             <th scope="col"> Acciones</th>
         </tr>
     </thead>
 
     <tbody>
-        {% for Worker in listado %}
+        {% for WorkerDocuments in listado %}
         <tr>
-            <td>{{Worker.id_worker}}</td>
-            <td>{{Worker.name}}</td>
-            <td>{{Worker.lastname}}</td>
-            <th>{{Worker.rut}}</th>
-            <td>{{Worker.adress}}</td>
-            <td>{{Worker.region}}</td>
-            <td>{{Worker.comuna}}</td>
-            <td>{{Worker.phone}}</td>
-            <td>{{Worker.email}}</td>
-            <td><a href="{% url 'edit_worker' Worker.id_worker %}" 
+            <td>{{WorkerDocuments.id}}</td>
+            <td>{{WorkerDocuments.name}}</td>
+            <td>{{WorkerDocuments.imagen}}</td>
+            <th>{{WorkerDocuments.descripcion}}</th>
+            <td><a href="{% url 'edit_workdoc' WorkerDocuments.id %}" 
                 class="btn btn-sm btn-block btn-info">
                 <ion-icon name="settings-outline"></ion-icon> Editar</a>
-            <a href="#" onclick="deleteworker ({{ Worker.id_worker }})"
+
+            <a href="#" onclick="deleteworkdoc ({{ WorkerDocuments.id  }})"
                 class="btn btn-sm btn-block btn-danger">
-                <ion-icon name="trash-outline"></ion-icon> Eliminar</a></td>
+                <ion-icon name="trash-outline"></ion-icon> Eliminar</a>
             </td>
         </tr>
         {% endfor %}

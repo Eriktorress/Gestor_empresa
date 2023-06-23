@@ -1,0 +1,34 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<br>
+
+<div class="row">
+    <div class="col-12 col-md-6">
+        <h2>Editar de Trabajador</h2>
+        <hr>
+        <form action="" method="post" class="/form_workdoc/">
+
+            {% csrf_token %}
+
+            {{form}}
+
+            <br>
+
+            <div class="d-flex">
+                <a href="{% url 'list_workdoc' %}">
+                    <button type="button" class="btn btn-secondary">Cancelar</button>
+                </a>
+                &nbsp;
+                <button type="submit" class="btn btn-primary">Editar</button>
+            </div>
+        </form>
+
+        {{ mensaje }}
+
+    </div>
+</div>
+
+{% endblock %}
