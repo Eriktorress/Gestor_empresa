@@ -1,61 +1,92 @@
-{% extends "base.html" %}  {% block content %}
+{% extends "base.html" %}
+{% block js %}  <!-- bloque de JS--> 
+<script>
+    function deleteworkdoc(id) {
+        Swal.fire({
+            title: '¿Estas seguro?',
+            text: "Esta acción no se puede deshacer!",
+            icon: 'warning',
+            showCancelButton: true,
+            cancelButtontext: '',
+            confirmButtonText: 'Si, Eliminar!',
+            confirmButtonColor:  '#d33',
+            cancelButtonColor:'#3085d6',
+        })
+        .then(function(result) {
+            if (result.isConfirmed) {
+                window.location.href = "/Delet_workdoc/"+id+"/"
+            }
+        })
 
-{% block js %} 
+    }
+</script>
+{% endblock %}
 
+{%block css%}
+<link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
 {% endblock %}
 
 
 
+{% block content %}
 
-<table style=" border: 30px solid rgb(255, 255, 255);" class="table table-striped table-hover table-responsive-sm">
+<table style=" border: 30px solid rgb(255, 255, 255);" 
+class="table table-striped table-hover table-responsive-sm">
      <!-- H1--> 
-    <h1 style=" border: 10px solid rgb(255, 255, 255);">Documentos</h1>
+    <h1 style=" border: 30px solid rgb(255, 255, 255);">Listado de documentos</h1>
 
     <thead class="table-dark">  
 <hr>
 
-    <div  style="border-right: 30px solid rgb(255, 255, 255);" class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <a href="{% url 'form_workdoc'%}"><button type="button" class="btn btn-success"><i class="icon ion-ios-add"></i> Añadir</button></a>
-        
-    </div>
-        <tr>
-            <th>Id</th>
-            <th>Documento</th>
-            <th>imagen</th>
-            <th>descripcion</th>
-            <th>Acciones</th>
-        </tr>
+<!-- boton de Nuevo centro-->
+<div  style="border-right: 30px solid rgb(255, 255, 255);" class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <a href="{% url 'form_workdoc'%}"><button type="button" class="btn btn-success"><ion-icon name="person-add-outline"></ion-icon> Añadir </button></a>
     
+  </div>
+
+<section style=" border-left:30px solid rgb(255, 255, 255);" class="webdesigntuts-workshop;">
+    <form action="" method="">
+        <input type="search" placeholder="Ingrese Busqueda">
+        <button class="btn btn-secondary"> <i class="icon ion-md-search"></i> Buscar</button>
+    </form>
+</section>
+        <tr>
+            <th scope="col"> Id</th>
+            <th scope="col"> Nombre</th>
+            <th scope="col"> Imagen </th>
+            <th scope="col"> Descripción</th>
+            <th scope="col"> Acciones</th>
+        </tr>
+    </thead>
+
     <tbody>
-        {% for list_workdoc in listado %}
+        {% for WorkerDocuments in listado %}
         <tr>
             <td>{{WorkerDocuments.id}}</td>
             <td>{{WorkerDocuments.name}}</td>
             <td>{{WorkerDocuments.imagen}}</td>
-            <td>{{WorkerDocuments.descripcion}}</td>
-            <td><a href="#" 
-                class="btn btn-sm btn-block btn-info"><ion-icon name="settings-outline"></ion-icon> Editar</a>
-                <a href="#"  
-                class="btn btn-sm btn-block btn-danger"><ion-icon name="trash-outline"></ion-icon> Eliminar</a>
+            <th>{{WorkerDocuments.descripcion}}</th>
+            <td><a href="{% url 'edit_workdoc' WorkerDocuments.id %}" 
+                class="btn btn-sm btn-block btn-info">
+                <ion-icon name="settings-outline"></ion-icon> Editar</a>
+
+            <a href="#" onclick="deleteworkdoc ({{ WorkerDocuments.id  }})"
+                class="btn btn-sm btn-block btn-danger">
+                <ion-icon name="trash-outline"></ion-icon> Eliminar</a>
             </td>
-             
         </tr>
         {% endfor %}
 
-        </tbody>
-        </table>
+    </tbody>
+</table>
 
 <footer>
     <div class="d-flex justify-content-center">
-        <a href="{% url 'home' %}"> 
-            <button type="button" class="btn btn-secondary">
-            <i class="icon ion-md-arrow-back"></i> 
-            Volver
-        </button>
-    </a>
+        <a href="{% url 'home' %}"> <button type="button" type="button"
+                class="btn btn-secondary"><i class="icon ion-md-arrow-back"></i> Volver</button></a>
     </div>
 </footer>
 
+{% endblock %}
 
 </html>
-{% endblock %}

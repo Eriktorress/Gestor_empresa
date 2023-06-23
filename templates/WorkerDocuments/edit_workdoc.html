@@ -9,14 +9,16 @@
     <div class="col-12 col-md-6">
         <h2>Editar de Trabajador</h2>
         <hr>
-        <form action="" method="post" class="/form_worker/">
+        <form action="" method="post" class="/form_workdoc/">
 
-           
+            {% csrf_token %}
+
+            {{form}}
 
             <br>
 
             <div class="d-flex">
-                <a href="{% url 'list_worker' %}">
+                <a href="{% url 'list_workdoc' %}">
                     <button type="button" class="btn btn-secondary">Cancelar</button>
                 </a>
                 &nbsp;
