@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+    <form enctype="multipart/form-data" method="post" >
+        <div class="mb-3">
+            <label for="form-label">Documentos:</label>
+            <input type="text"
+                class="form-control" name="" id="" aria-describedby="helpId" placeholder="Nombre">
+                <small id="helpId" class="form-text text-muted">Help text</small>
+            </input>  
+        </div>
+
+    </form>
+ 
+    <footer>
+        <div class="d-flex justify-content-center">
+            <a href="{% url 'list_workdoc' %}"> 
+                <button type="button" class="btn btn-secondary">
+                <i class="icon ion-md-arrow-back"></i> 
+                Volver
+            </button>
+        </a>
+        </div>
+    </footer>
+{% endblock %}

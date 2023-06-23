@@ -6,7 +6,7 @@ from apps.Users.views import signup,signout, signin
 from apps.Workplace.views import list_workplace,form_workplace, edit_workplace,\
     delet_workplace
 from apps.Worker.views import list_worker, form_worker,edit_worker,delet_worker
-from apps.WorkerDocuments.views import documents
+from apps.WorkerDocuments.views import list_workdoc,form_workdoc,edit_workdoc,delet_workdoc,crear_workdoc
 
 
 urlpatterns = [
@@ -42,6 +42,9 @@ urlpatterns = [
     path ('Delete_worker/<id>/', delet_worker, name='delet_worker'),
     
     #-----WorkerDocuments-----
-    path ('Documents/', documents, name='documents'),
-    
+    path ('List_workdoc/', list_workdoc, name='list_workdoc'),
+    path ('Form_workdoc/', form_workdoc, name='form_workdoc'),
+    path ('Edit_workdoc/<id>/', edit_workdoc, name='edit_workdoc'),
+    path ('Delet_workdoc/<id>/', delet_workdoc, name='delet_workdoc'),
+    path ('Crear_workdoc/<id>/', crear_workdoc, name='crear_workdoc')
 ]

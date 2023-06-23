@@ -34,9 +34,8 @@
     <thead class="table-dark">  
 <hr>
 
-<!-- boton de Nuevo centro-->
     <div  style="border-right: 30px solid rgb(255, 255, 255);" class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <a href="{% url 'documents'%}"><button type="button" class="btn btn-success"><i class="icon ion-ios-add"></i> Añadir</button></a>
+        <a href="{% url 'form_workdoc'%}"><button type="button" class="btn btn-success"><i class="icon ion-ios-add"></i> Añadir</button></a>
         
     </div>
         <tr>
@@ -48,13 +47,7 @@
     <tbody>
         {% for WorkerDocuments in listado %}
         <tr>
-            <td>{{WorkerDocuments.all}}</td>
-            <td>{{WorkerDocuments.name_company}}</td>
-            <td>{{Company.estado_company}}</td>
-            <td><a href="{% url 'edit_company' Company.id_company %}"  class="btn btn-sm btn-block btn-info"><ion-icon name="settings-outline"></ion-icon> Editar</a>
-            <a href="#" onclick="deletecompany ({{ Company.id_company }})"
-                    class="btn btn-sm btn-block btn-danger"><ion-icon name="trash-outline"></ion-icon> Eliminar</a></td>
-            </td>
+            
         </tr>
         {% endfor %}
 

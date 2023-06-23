@@ -116,7 +116,7 @@ LANGUAGE_CODE = 'es'
 TIME_ZONE = 'America/Santiago'
 USE_I18N = True
 USE_TZ = True
-#DATE_INPUT_FORMATS = ['dd-mm-yyyy']
+#DATE_INPUT_FORMATS = ['%d-%m-%y']
 
 
 # Static files (CSS, JavaScript, Images)
