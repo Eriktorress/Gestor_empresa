@@ -24,16 +24,18 @@
                       {% csrf_token %}
                       <div class="form-group-name">
                         {{ form.username.label_tag }}
+                        <br>
                         {{ form.username }}
                       </div>
                       <div class="form-group-pass">
                         {{ form.password.label_tag }}
+                        <br>
                         {{ form.password }}
                       </div>
                     
                       <button class="button">Ingresar</button>
                       <hr>
-                      <div class="login-signup">¿Aún no tienes cuenta? <a href="{% url 'signup' %}">Regístrate</a></div>
+                      <div class="login-signup">¿Aún no tienes cuenta? <a href="{% url 'signup' %}" class="registrate">Regístrate</a></div>
                     </form>                                                                                                                    
               </div>
 

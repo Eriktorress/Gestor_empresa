@@ -6,6 +6,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{% static 'admin/css/signup.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trirong">
+    <link rel="icon" type="image/x-icon" href="{% static 'admin/img/iluminati.png' %}"> 
+    <title>Gestion Empresas</title>
   </head>
 
  <body class="body">
@@ -22,17 +24,23 @@
                   {% csrf_token %} 
                   
                   <div class="form-group-name">
-                    <label for="{{ form.username.id_for_label }}">Usuario:</label>
+                    <label for="{{ form.username.id_for_label }}">Usuario: </label>
+                    <br>
                     {{ form.username }}
                   </div>
+
                   <div class="form-group-pass1">
-                    <label for="{{ form.password1.id_for_label }}">Contraseña:</label>
+                    <label for="{{ form.password1.id_for_label }}">Contraseña: </label>
+                    <br>
                     {{ form.password1 }}
                   </div>
+
                   <div class="form-group-pass2">
-                    <label for="{{ form.password2.id_for_label }}">Confirmar contraseña:</label>
+                    <label for="{{ form.password2.id_for_label }}">Confirmar contraseña: </label>
+                    <br>
                     {{ form.password2 }}
                   </div>
+                  
                   <hr>
                   <button class="button">Registrar</button>
                   <a href="{% url 'signin' %}"><button type="button" class="btn btn-secondary">Cancelar</button></a>

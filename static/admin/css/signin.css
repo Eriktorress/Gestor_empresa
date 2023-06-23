@@ -35,13 +35,13 @@
 }
 
 .form-group-name{
-    margin-left: 35px;
+    margin-left: 150px;
     margin-top: 50px;
     font-size: 20px;
     
 }
 .form-group-pass{
-    margin-left: 107px;
+    margin-left: 150px;
     margin-top: 20px;
     font-size: 20px;
 }
@@ -50,5 +50,9 @@
     font-size: 15px;
     text-align: center;
     margin-top: 20px;
+    color: black;
 
+}
+.registrate{
+    color: blueviolet;
 }
