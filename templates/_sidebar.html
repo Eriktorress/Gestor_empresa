@@ -1,6 +1,6 @@
 {% load static %}
 <header id="header">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg ">
         <div class="container-fluid" id="container">
 
             <!-- NavBar -->
@@ -72,39 +72,47 @@
     </nav>
 </header>
 
- <!-- SideBar --> 
+
 <body id="body">
 
+     <!-- Sidebar titulo --> 
     <div class="menu__side" id="menu_side">
         <div class="name__page">
             <h2>Gestión Web</h2>
         </div>
 
+         <!-- Sidebar contenido-->  
         <div class="options__menu">
-
             <br>
+
            <!-- Dashboard --> 
-            <div><a href="{% url 'home' %}" class="d-block text-light p-1"/><i class="icon ion-md-apps mr-2 lead"></i> 
-                Dashboard 
+            <div>
+                <a href="{% url 'home' %}" class="d-block text-light p-1"><i class="icon ion-md-apps mr-2 lead"></i> Dashboard 
             </div>
+
            <!-- Configuración --> 
-            <a class="d-block text-light p-1" title="Organización"
-                data-bs-toggle="collapse"
-                role="button" 
-                data-bs-target="#collapseExample1" 
-                aria-expanded="false"
-                aria-controls="collapseExample1">
-                
-                <i class="icon ion-md-construct mr-2 lead"></i> 
-                Configuración
-           </a>
-            </p>
-              <div class="collapse " id="collapseExample1"aria-labelledby="dropdownMenuButton">
+           <div>
+                <a class="d-block text-light p-1" title="Configuración"
+                    data-bs-toggle="collapse"
+                    role="button" 
+                    data-bs-target="#collapseExample1" 
+                    aria-expanded="false"
+                    aria-controls="collapseExample">
+            
+                    <i class="icon ion-md-construct mr-2 lead"></i> Configuración
+                </a>
+           </div>
+
+           <div class="collapse " id="collapseExample1"aria-labelledby="dropdownMenuButton">
                 <div class="card card-body">
                     <li><a style="color:black" class="dropdown-item" href="#">Usuarios</a></li>
                     <li><a style="color:black" class="dropdown-item" href="#">Perfil</a></li>
                 </div>
-              </div>
+           </div>
+           
+
+
+
             <!-- Organizacion --> 
             <div class="d-block text-light p-1" title="Organización"
                  data-bs-toggle="collapse"
@@ -116,7 +124,7 @@
                 <i class="icon ion-md-briefcase"></i> 
                 Organización
            </div>
-           </p>
+           
            <div class="collapse " id="collapseExample"aria-labelledby="dropdownMenuButton">
              <div class="card card-body">
                 <li><a style="color:black" class="dropdown-item" href="{% url 'list_company' %}">Empresas</a></li>
