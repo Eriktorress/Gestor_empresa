@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='worker',
             name='discapacidad',
-            field=models.BinaryField(default=True, verbose_name='Es_Discapacitado'),
+            field=models.CharField(default=True, verbose_name='Es_Discapacitado'),
         ),
     ]
