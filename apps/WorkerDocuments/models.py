@@ -4,8 +4,12 @@ from apps.Tipodocumento.models import Tipodocumento
 
 class WorkerDocuments (models.Model):
     id = models.AutoField(primary_key=True)
-    id_worker = models.ForeignKey(Worker,on_delete=models.PROTECT)
-    id_tipo_doc = models.ForeignKey(Tipodocumento,on_delete=models.PROTECT)
+    #id_worker = models.ForeignKey(Worker,on_delete=models.PROTECT)
+    #id_tipo_doc = models.ForeignKey(Tipodocumento,on_delete=models.PROTECT)
+    name = models.CharField(verbose_name='Nombre',max_length=100)
+    imagen = models.ImageField(upload_to='imagenes/',verbose_name="Imagen",null=True)
+    descripcion = models.TextField(verbose_name='Descripción',null=True)
+
     
     
     def __str__(self) :

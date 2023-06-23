@@ -5,10 +5,31 @@
     <form enctype="multipart/form-data" method="post" >
         <div class="mb-3">
             <label for="form-label">Documentos:</label>
-            <input type="text"
-                class="form-control" name="" id="" aria-describedby="helpId" placeholder="Nombre">
-                <small id="helpId" class="form-text text-muted">Help text</small>
-            </input>  
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Documento</th>
+                        <th>imagen</th>
+                        <th>descripcion</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{WorkerDocuments.id}}</td>
+                        <td>{{WorkerDocuments.name}}</td>
+                        <td>{{WorkerDocuments.imagen}}</td>
+                        <td>{{WorkerDocuments.descripcion}}</td>
+                        <td><a href="#" 
+                            class="btn btn-sm btn-block btn-info"><ion-icon name="settings-outline"></ion-icon> Editar</a>
+                            <a href="#"  
+                            class="btn btn-sm btn-block btn-danger"><ion-icon name="trash-outline"></ion-icon> Eliminar</a>
+                        </td>
+                         
+                    </tr>
+                </tbody>
+            </table> 
         </div>
 
     </form>

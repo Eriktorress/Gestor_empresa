@@ -5,7 +5,7 @@ from .models import WorkerDocuments
 from django.contrib.auth.forms import UserCreationForm
 
 
-class WorkerForm(forms.ModelForm):
+class WorkerDocumentsForm(forms.ModelForm):
 
     class Meta:
         model = WorkerDocuments

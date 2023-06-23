@@ -2,26 +2,6 @@
 
 {% block js %} 
 
-<script>
-    function deletecompany(id_company) {
-        Swal.fire({
-            title: '¿Estas seguro?',
-            text: "Esta acción no se puede deshacer!",
-            icon: 'warning',
-            showCancelButton: true,
-            cancelButtontext: '',
-            confirmButtonText: 'Si, Eliminar!',
-            confirmButtonColor:  '#d33',
-            cancelButtonColor:'#3085d6',
-        })
-        .then(function(result) {
-            if (result.isConfirmed) {
-                window.location.href = "/Delete_company/"+id_company+"/"
-            }
-        })
-
-    }
-</script>
 {% endblock %}
 
 
@@ -39,15 +19,26 @@
         
     </div>
         <tr>
-            <th scope="col"> Id</th>
-            <th scope="col"> Documento</th>
-            <th scope="col"> Acciones</th>
+            <th>Id</th>
+            <th>Documento</th>
+            <th>imagen</th>
+            <th>descripcion</th>
+            <th>Acciones</th>
         </tr>
     
     <tbody>
-        {% for WorkerDocuments in listado %}
+        {% for list_workdoc in listado %}
         <tr>
-            
+            <td>{{WorkerDocuments.id}}</td>
+            <td>{{WorkerDocuments.name}}</td>
+            <td>{{WorkerDocuments.imagen}}</td>
+            <td>{{WorkerDocuments.descripcion}}</td>
+            <td><a href="#" 
+                class="btn btn-sm btn-block btn-info"><ion-icon name="settings-outline"></ion-icon> Editar</a>
+                <a href="#"  
+                class="btn btn-sm btn-block btn-danger"><ion-icon name="trash-outline"></ion-icon> Eliminar</a>
+            </td>
+             
         </tr>
         {% endfor %}
 
