@@ -3,31 +3,77 @@
 {% block content %}
 
 <br>
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trirong">
+    <link rel="stylesheet" href="{% static 'admin/css/form_worker.css' %}">
+    <title>Gestion Empresas</title>
+</head>
 
-<div class="row">
-    <div class="col-12 col-md-6">
-        <h2>Formulario de centros</h2>
-        <hr>
-        <form action="" method="post" class="/form_workplace/">
+<body class="body">
+    <main>
+    <div class="row">
+            <div class="col-12 col-md-6">
+            <h2 class="titulo">Formulario de centros</h2>
+            <hr>
+            <form action="" method="post" class="/form_workplace/">
 
-            {% csrf_token %}
+                {% csrf_token %}
 
-            {{form}}
+                <div class="form-group-name">
+                    <label for="{{ form.name.id_for_label }}">Nombre:</label>
+                    <br>
+                    {{ form.name_workplace }}
+                </div>
+                <div class="form-group-name">
+                    <label for="{{ form.name.id_for_label }}">Dirección:</label>
+                    <br>
+                    {{ form.adress }}
+                </div>
+                <div class="form-group-name">
+                    <label for="{{ form.name.id_for_label }}">Comuna:</label>
+                    <br>
+                    {{ form.comuna }}
+                </div>
+                <div class="form-group-name">
+                    <label for="{{ form.name.id_for_label }}">Region:</label>
+                    <br>
+                    {{ form.region }}
+                </div>
+                <div class="form-group-name">
+                    <label for="{{ form.name.id_for_label }}">Phone:</label>
+                    <br>
+                    {{ form.phone }}
+                </div>
+                <div class="form-group-name">
+                    <label for="{{ form.name.id_for_label }}">Estado centro de trabajo:</label>
+                    <br>
+                    {{ form.estado_workplace }}
+                </div>
+                <div class="form-group-name">
+                    <label for="{{ form.name.id_for_label }}">Id Company:</label>
+                    <br>
+                    {{ form.id_company }}
+                </div>
 
-            <br>
+                <hr>
 
-            <div class="d-flex">
-                <a href="{% url 'list_workplace' %}">
-                    <button type="button" class="btn btn-secondary">Cancelar</button>
-                </a>
-                &nbsp;
-                <button type="submit" id="btnEnviar" class="btn btn-primary">Guardar</button>
-            </div>
-        </form>
+                <div class="d-flex">
+                    <button type="submit" id="btnEnviar" class="btn btn-primary">Guardar</button>
+                    &nbsp;
+                    <a href="{% url 'list_workplace' %}">
+                        <button type="button" class="btn btn-secondary">Cancelar</button>
+                    </a>
+                </div>
 
-        {{ mensaje }}
+            </form>
 
+            {{ mensaje }}
+
+        </div>
     </div>
-</div>
+    </main>
+</body>
+{% block js %}
+{% endblock %}
 
 {% endblock %}

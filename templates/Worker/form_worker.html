@@ -1,33 +1,104 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+<html>
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trirong">
+    <link rel="stylesheet" href="{% static 'admin/css/form_worker.css' %}">
+    <title>Gestion Empresas</title>
+</head>
 
-<br>
+<body class="body">
+    <main>
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <h2 class="titulo">Formulario de Trabajador</h2>
+            <hr>
+            <form  method="post" class="form-worker">
 
-<div class="row">
-    <div class="col-12 col-md-6">
-        <h2>Formulario de Trabajador</h2>
-        <hr>
-        <form action="" method="post" class="/form_worker/">
+                {% csrf_token %}
 
-            {% csrf_token %}
+                <div class="form-group-name">
+                    <label for="{{ form.name.id_for_label }}">Nombres:</label>
+                    <br>
+                    {{ form.name }}
+                    <!-- Puedes repetir este bloque para cada campo del formulario -->
+                </div>
 
-            {{form}}
+                <div class="form-group-ape">
+                    <label for="{{ form.lastname.id_for_label }}">Apellidos:</label>
+                    <br>
+                    {{ form.lastname }}
+                    <!-- Puedes repetir este bloque para cada campo del formulario -->
+                </div>
 
-            <br>
+                <div class="form-group-rut">
+                    <label for="{{ form.rut.id_for_label }}">Rut:</label>
+                    <br>
+                    {{ form.rut }}
+                    <!-- Puedes repetir este bloque para cada campo del formulario -->
+                </div>
 
-            <div class="d-flex">
-                <a href="{% url 'list_worker' %}">
-                    <button type="button" class="btn btn-secondary">Cancelar</button>
-                </a>
-                &nbsp;
-                <button type="submit" id="btnEnviar" class="btn btn-primary">Guardar</button>
-            </div>
-        </form>
+                <div class="form-group-dir">
+                    <label for="{{ form.adress.id_for_label }}">Dirección:</label>
+                    <br>
+                    {{ form.adress }}
+                    <!-- Puedes repetir este bloque para cada campo del formulario -->
+                </div>
 
-        {{ mensaje }}
+                <div class="form-grou-reg">
+                    <label for="{{ form.region.id_for_label }}">Región:</label>
+                    <br>
+                    {{ form.region }}
+                    <!-- Puedes repetir este bloque para cada campo del formulario -->
+                </div>
 
+                <div class="form-group-com">
+                    <label for="{{ form.comuna.id_for_label }}">Comuna:</label>
+                    <br>
+                    {{ form.comuna }}
+                    <!-- Puedes repetir este bloque para cada campo del formulario -->
+                </div>
+
+                <div class="form-group-tel">
+                    <label for="{{ form.phone.id_for_label }}">Teléfono:</label>
+                    <br>
+                    {{ form.phone }}
+                    <!-- Puedes repetir este bloque para cada campo del formulario -->
+                </div>
+
+                <div class="form-group-email">
+                    <label for="{{ form.email.id_for_label }}">Email:</label>
+                    <br>
+                    {{ form.email }}
+                    <!-- Puedes repetir este bloque para cada campo del formulario -->
+                </div>
+
+                <div class="form-group-idcomp">
+                    <label for="{{ form.id_company.id_for_label }}">Id Company:</label>
+                    <br>
+                    {{ form.id_company }}
+                    <!-- Puedes repetir este bloque para cada campo del formulario -->
+                </div>
+
+                <hr>
+
+                <div class="d-flex">
+                    <button type="submit" id="btnEnviar" class="btn btn-primary">Guardar</button>
+                    &nbsp;
+                    <a href="{% url 'list_worker' %}">
+                        <button type="button" class="btn btn-secondary">Cancelar</button>
+                    </a>
+                </div>
+            </form>
+            {{ mensaje }}
+        </div>
     </div>
-</div>
+</main>
+</body>
+</html>
+
+{% block js %}
+{% endblock %}
 
 {% endblock %}

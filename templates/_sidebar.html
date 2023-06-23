@@ -13,7 +13,7 @@
             <div class="d-flex" class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto ">
                     <li class="nav-item dropdown ">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {% if user.is_authenticated %}
                             <img src="{% static 'css/Imagenes/Icono.jpg' %}"
@@ -21,16 +21,15 @@
                             {% endif %}
     
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">
-                                Perfil
-                            </a>
+                                <a class="dropdown-item" href="#">
+                                    Perfil
+                                </a>
                             <div class="dropdown-divider"></div>
-                            <li>
-                                <button class="dropdown-item" type="button" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">
-                                    Cerrar sesión
-                                </button>
-                            </li>
+                                <li>
+                                    <button class="dropdown-item" type="button" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal"> Cerrar sesión
+                                    </button>
+                                </li>
                         </ul>
     
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
@@ -43,21 +42,16 @@
                                             ¿Está seguro que desea cerrar sesión?
                                         </h5>
     
-                                        <button type="button" class="close" data-bs-dismiss="modal"
-                                            aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
+                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true"> &times;</span>
                                         </button>
-    
                                     </div>
-    
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">
-                                            Seguir navegando
+                                            data-bs-dismiss="modal"> Seguir navegando
                                         </button>
                                         <a href="{% url 'signin' %}">
-                                            <button type="button" class="btn btn-danger">
-                                            Cerrar sesión
+                                            <button type="button" class="btn btn-danger">Cerrar sesión
                                             </button>
                                         </a>
                                     </div>
@@ -137,4 +131,8 @@
     </div>
 
 </body>
+
+
+
+
 
