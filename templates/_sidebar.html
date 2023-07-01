@@ -1,35 +1,42 @@
 {% load static %}
-<header id="header">
-    <nav class="navbar navbar-expand-lg ">
+
+<header nav class="navbar navbar-expand-lg"> 
+
         <div class="container-fluid" id="container">
 
             <!-- NavBar -->
             <!-- Icono Desplegable -->
-            <div class="icon_menu" >
+            <div class="icon_menu">
                 <i class="fa-solid fa-bars" id="btn_open"></i>
             </div>
 
+            <div class="mt-2 mb-2">
+                <input id="search-input" class="search-input" type="text" placeholder="Buscar empresa">
+                <button id="search-button" class="search-button">Buscar</button>
+            </div>
+            
             <!-- Logout -->
-            <div class="d-flex" class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto ">
-                    <li class="nav-item dropdown ">
+            <div class="spacer ml-auto" class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {% if user.is_authenticated %}
-                            <img src="{% static 'css/Imagenes/Icono.jpg' %}"
-                                class="img-fluid rounded-circle avatar mr-2"> {{ user.username }}</a>
+                            <img src="{% static 'css/Imagenes/Icono.jpg' %}" class="img-fluid rounded-circle avatar mr-2">
+                            {{ user.username }}
                             {% endif %}
+                        </a>
     
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">
-                                    Perfil
-                                </a>
+                            <a class="dropdown-item" href="#">
+                                Perfil
+                            </a>
                             <div class="dropdown-divider"></div>
-                                <li>
-                                    <button class="dropdown-item" type="button" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal"> Cerrar sesión
-                                    </button>
-                                </li>
+                            <li>
+                                <button class="dropdown-item" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal"> Cerrar sesión
+                                </button>
+                            </li>
                         </ul>
     
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
@@ -37,13 +44,12 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-    
                                         <h5 class="modal-title" id="exampleModalLabel">
                                             ¿Está seguro que desea cerrar sesión?
                                         </h5>
     
                                         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true"> &times;</span>
+                                            <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-footer">
@@ -55,7 +61,6 @@
                                             </button>
                                         </a>
                                     </div>
-    
                                 </div>
                             </div>
                         </div>
@@ -64,10 +69,9 @@
             </div>
         </div>
     </nav>
-</header>
 
 
-<body id="body">
+<body id="body" style="margin-top: 0;" >
 
      <!-- Sidebar titulo --> 
     <div class="menu__side" id="menu_side">
@@ -134,6 +138,6 @@
 </body>
 
 
-
+</header>
 
 

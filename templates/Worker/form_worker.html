@@ -17,70 +17,61 @@
             <form action="" method="post" class="/form_worker/">
 
                 {% csrf_token %}
-
-                <div class="form-group-name">
-                    <label for="{{ form.name.id_for_label }}">Nombres:</label>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="{{ form.name.id_for_label }}">
+                        Nombres:
+                    </label>
                     <br>
                     {{ form.name }}
-                    <!-- Puedes repetir este bloque para cada campo del formulario -->
                 </div>
 
-                <div class="form-group-ape">
+                <div class="form-group col-md-6">
                     <label for="{{ form.lastname.id_for_label }}">Apellidos:</label>
                     <br>
                     {{ form.lastname }}
-                    <!-- Puedes repetir este bloque para cada campo del formulario -->
                 </div>
 
-                <div class="form-group-rut">
+                <div class="form-group col-md-6">
                     <label for="{{ form.rut.id_for_label }}">Rut:</label>
                     <br>
                     {{ form.rut }}
-                    <!-- Puedes repetir este bloque para cada campo del formulario -->
                 </div>
 
-                <div class="form-group-dir">
+                <div class="form-group col-md-6">
                     <label for="{{ form.adress.id_for_label }}">Dirección:</label>
                     <br>
                     {{ form.adress }}
-                    <!-- Puedes repetir este bloque para cada campo del formulario -->
                 </div>
 
-                <div class="form-grou-reg">
+                <div class="form-group col-md-6">
                     <label for="{{ form.region.id_for_label }}">Región:</label>
                     <br>
                     {{ form.region }}
-                    <!-- Puedes repetir este bloque para cada campo del formulario -->
                 </div>
-
-                <div class="form-group-com">
+                <div class="form-group col-md-6">
                     <label for="{{ form.comuna.id_for_label }}">Comuna:</label>
                     <br>
                     {{ form.comuna }}
-                    <!-- Puedes repetir este bloque para cada campo del formulario -->
                 </div>
-
-                <div class="form-group-tel">
-                    <label for="{{ form.phone.id_for_label }}">Teléfono:</label>
+                <div class="form-group col-md-6">
+                    <label for="{{ form.phone.id_for_label }}">
+                        Teléfono:
+                    </label>
                     <br>
                     {{ form.phone }}
-                    <!-- Puedes repetir este bloque para cada campo del formulario -->
                 </div>
-
-                <div class="form-group-email">
+                <div class="form-group col-md-6">
                     <label for="{{ form.email.id_for_label }}">Email:</label>
                     <br>
                     {{ form.email }}
-                    <!-- Puedes repetir este bloque para cada campo del formulario -->
+                 
                 </div>
-
-                <div class="form-group-idcomp">
+                <div class="form-group col-md-6">
                     <label for="{{ form.id_company.id_for_label }}">Id Company:</label>
                     <br>
                     {{ form.id_company }}
-                    <!-- Puedes repetir este bloque para cada campo del formulario -->
                 </div>
-
                 <hr>
 
                 <div class="d-flex">
