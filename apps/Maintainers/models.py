@@ -35,7 +35,7 @@ class Tipodiscapacidad(models.Model):
 # Modelo de Región .
 class Region(models.Model):
     id_Region = models.AutoField(primary_key=True)
-    name = models.CharField(verbose_name='Región', max_length=20)
+    name = models.CharField(verbose_name='Región', max_length=50)
 
     def __str__(self):
         return f"{self.name}"
@@ -44,6 +44,7 @@ class Region(models.Model):
 class Comuna(models.Model):
     id_Comuna = models.AutoField(primary_key=True)
     name = models.CharField(verbose_name='Comunas', max_length=20)
+    region = models.ForeignKey(Region, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.name}"
