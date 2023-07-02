@@ -1,79 +1,76 @@
 {% extends "base.html" %}
 {% load static %}
+{% load custom_tags %}
 {% block content %}
 <html>
 <head>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trirong">
-    <link rel="stylesheet" href="{% static 'admin/css/form_worker.css' %}">
-    <title>Gestion Empresas</title>
+   <!--  <link rel="stylesheet" href="{% static 'admin/css/form_worker.css' %}">-->
 </head>
 
 <body class="body">
     <main>
-    <div class="row">
-        <div class="col-12 col-md-6">
+        <div>
             <h2 class="titulo">Formulario de Trabajador</h2>
             <hr>
             <form action="" method="post" class="/form_worker/">
 
                 {% csrf_token %}
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="{{ form.name.id_for_label }}">
-                        Nombres:
-                    </label>
-                    <br>
-                    {{ form.name }}
+
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="{{ form.name.id_for_label }}">Nombre</label>
+                        {{ form.name|add_class:'form-control' }}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="{{ form.lastname.id_for_label }}">Apellidos</label>
+                        {{ form.lastname|add_class:'form-control' }}
+                    </div>
                 </div>
 
-                <div class="form-group col-md-6">
-                    <label for="{{ form.lastname.id_for_label }}">Apellidos:</label>
-                    <br>
-                    {{ form.lastname }}
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="{{ form.rut.id_for_label }}">RUT</label>
+                        {{ form.rut|add_class:'form-control' }}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="{{ form.address.id_for_label }}">Dirección</label>
+                        {{ form.address|add_class:'form-control' }}
+                    </div>
                 </div>
 
-                <div class="form-group col-md-6">
-                    <label for="{{ form.rut.id_for_label }}">Rut:</label>
-                    <br>
-                    {{ form.rut }}
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="{{ form.region.id_for_label }}">Región</label>
+                        {{ form.region|add_class:'form-control' }}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="{{ form.comuna.id_for_label }}">Comuna</label>
+                        {{ form.comuna|add_class:'form-control' }}
+                    </div>
                 </div>
 
-                <div class="form-group col-md-6">
-                    <label for="{{ form.adress.id_for_label }}">Dirección:</label>
-                    <br>
-                    {{ form.adress }}
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="{{ form.phone.id_for_label }}">Teléfono</label>
+                        {{ form.phone|add_class:'form-control' }}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="{{ form.email.id_for_label }}">Email</label>
+                        {{ form.email|add_class:'form-control' }}
+                    </div>
                 </div>
 
-                <div class="form-group col-md-6">
-                    <label for="{{ form.region.id_for_label }}">Región:</label>
-                    <br>
-                    {{ form.region }}
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="{{ form.comuna.id_for_label }}">Comuna:</label>
-                    <br>
-                    {{ form.comuna }}
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="{{ form.phone.id_for_label }}">
-                        Teléfono:
-                    </label>
-                    <br>
-                    {{ form.phone }}
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="{{ form.email.id_for_label }}">Email:</label>
-                    <br>
-                    {{ form.email }}
-                 
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="{{ form.id_company.id_for_label }}">Id Company:</label>
-                    <br>
-                    {{ form.id_company }}
-                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="{{ form.id_company.id_for_label }}">Company</label>
+                        {{ form.id_company|add_class:'form-control' }}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="{{ form.id_Tipo_discapacidad.id_for_label }}">Tipo discapacidad</label>
+                        {{ form.id_Tipo_discapacidad|add_class:'form-control' }}
+                    </div>
                 <hr>
-
                 <div class="d-flex">
                     <button type="submit" id="btnEnviar" class="btn btn-primary">Guardar</button>
                     &nbsp;
@@ -83,7 +80,6 @@
                 </div>
             </form>
             {{ mensaje }}
-        </div>
     </div>
 </main>
 </body>

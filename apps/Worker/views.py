@@ -9,13 +9,14 @@ from django.contrib import messages
 #Listar company de trabajos
 def list_worker(request):
     listado = Worker.objects.all();
+    
     return render(request, 'Worker/list_worker.html', {'listado':listado})
 
 #Formulario centro de trabajo
 def form_worker(request):
 
     data = {
-        'form': WorkerForm()
+        'form': WorkerForm(),
     }
 
     if request.method == 'POST':
