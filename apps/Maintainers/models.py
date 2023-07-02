@@ -23,12 +23,13 @@ class Tipodiscapacidad(models.Model):
 # Modelo de Región .
 class Region(models.Model):
     id_Region = models.AutoField(primary_key=True)
-    name = models.CharField(verbose_name='Región', max_length=20)
+    name = models.CharField(verbose_name='Región', max_length=50)
     
 # Modelo de Comuna.
 class Comuna(models.Model):
     id_Comuna = models.AutoField(primary_key=True)
     name = models.CharField(verbose_name='Comunas', max_length=20)
+    region = models.ForeignKey(Region, on_delete=models.CASCADE)
 
 # Modelo de Comuna.
 class Tipodocumento(models.Model):
