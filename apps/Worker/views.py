@@ -1,8 +1,9 @@
+from django.contrib import messages
 from django.shortcuts import redirect, render, get_object_or_404
 from django.shortcuts import render
 from .models import Worker
 from .forms import WorkerForm
-from django.contrib import messages
+
 
 # Create your views here.
 
@@ -27,6 +28,7 @@ def form_worker(request):
             return redirect(to="list_worker")
         else:
             data["form"] = formulario_worker
+            messages.error(request, "Error al guardar el formulario")
     return render(request, 'Worker/form_worker.html', data)
 
 #Editar centro de trabajo

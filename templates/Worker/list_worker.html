@@ -39,7 +39,9 @@
 
 <!-- boton de Nuevo centro-->
 <div  style="border-right: 30px solid rgb(255, 255, 255);" class="d-grid gap-2 d-md-flex justify-content-md-end">
-    <a href="{% url 'form_worker'%}"><button type="button" class="btn btn-success"><ion-icon name="person-add-outline"></ion-icon> Añadir </button></a>
+    <a href="{% url 'form_worker'%}"><button type="button" class="btn btn-success">
+        Añadir 
+    </button></a>
     
   </div>
 
@@ -69,18 +71,20 @@
             <td>{{Worker.id_worker}}</td>
             <td>{{Worker.name}}</td>
             <td>{{Worker.lastname}}</td>
-            <th>{{Worker.rut}}</th>
-            <td>{{Worker.adress}}</td>
+            <td>{{Worker.rut}}</td>
+            <td>{{Worker.address}}</td>
             <td>{{Worker.region}}</td>
             <td>{{Worker.comuna}}</td>
             <td>{{Worker.phone}}</td>
             <td>{{Worker.email}}</td>
             <td><a href="{% url 'edit_worker' Worker.id_worker %}" 
                 class="btn btn-sm btn-block btn-info">
-                <ion-icon name="settings-outline"></ion-icon> Editar</a>
+                Editar
+            </a>
             <a href="#" onclick="deleteworker ({{ Worker.id_worker }})"
                 class="btn btn-sm btn-block btn-danger">
-                <ion-icon name="trash-outline"></ion-icon> Eliminar</a></td>
+                Eliminar
+            </a>
             </td>
         </tr>
         {% endfor %}
@@ -90,8 +94,9 @@
 
 <footer>
     <div class="d-flex justify-content-center">
-        <a href="{% url 'home' %}"> <button type="button" type="button"
-                class="btn btn-secondary"><i class="icon ion-md-arrow-back"></i> Volver</button></a>
+        <a href="{% url 'home' %}"> <button type="button" type="button"class="btn btn-secondary">
+            Volver
+        </button></a>
     </div>
 </footer>
 

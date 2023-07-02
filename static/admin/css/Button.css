@@ -1,0 +1,17 @@
+/* Estilos para los botones de los formularios */
+.btn {
+  margin-bottom: 50px !important;
+}
+
+  
+  /* Estilos para los botones de acción principal */
+  .btn-primary {
+    background-color: #304a65;
+    color: #fff;
+  }
+  
+  /* Estilos para los botones de acción secundaria */
+  .btn-secondary {
+    background-color: #6c757d;
+    color: #fff;
+  }

@@ -19,7 +19,7 @@ class Worker(models.Model):
     id_company = models.ForeignKey(Company, verbose_name='Empresa', on_delete=models.PROTECT)
     estado_worker = models.ForeignKey(Estado, verbose_name='Estado', on_delete=models.PROTECT)
     sexo = models.ForeignKey(Sexo, verbose_name='Género', on_delete=models.PROTECT)
-    id_workplace = models.ForeignKey(Workplace, null=True, verbose_name='Centro', on_delete=models.PROTECT)
+    id_workplace = models.ForeignKey(Workplace, null=True, blank=True, verbose_name='Centro', on_delete=models.PROTECT)
     id_Discapacidad = models.ForeignKey(Discapacidad, null=True,verbose_name='Tiene Alguna Discapacidad', on_delete=models.PROTECT)
     id_Tipo_discapacidad = models.ForeignKey(Tipodiscapacidad, null=True,verbose_name='Indique la que corresponda', on_delete=models.PROTECT)
     fec_nac = models.DateField(verbose_name='Fecha de Nacimiento (Formato año/mes/dia)', null=True)

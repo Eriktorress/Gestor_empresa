@@ -5,7 +5,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trirong">
-   <!--  <link rel="stylesheet" href="{% static 'admin/css/form_worker.css' %}">-->
+    <link rel="stylesheet" href="{% static 'admin/css/Button.css' %}">
 </head>
 
 <body class="body">
@@ -13,7 +13,7 @@
         <div>
             <h2 class="titulo">Formulario de Trabajador</h2>
             <hr>
-            <form action="" method="post" class="/form_worker/">
+            <form action="" method="post">
 
                 {% csrf_token %}
 
@@ -27,7 +27,6 @@
                         {{ form.lastname|add_class:'form-control' }}
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="{{ form.rut.id_for_label }}">RUT</label>
@@ -36,6 +35,16 @@
                     <div class="form-group col-md-6">
                         <label for="{{ form.address.id_for_label }}">Dirección</label>
                         {{ form.address|add_class:'form-control' }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="{{ form.sexo.id_for_label }}">Sexo</label>
+                        {{ form.sexo|add_class:'form-control' }}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="{{ form.fec_nac.id_for_label }}">Fecha de nacimiento</label>
+                        {{ form.fec_nac|add_class:'form-control' }}
                     </div>
                 </div>
 
@@ -67,18 +76,48 @@
                         {{ form.id_company|add_class:'form-control' }}
                     </div>
                     <div class="form-group col-md-6">
+                        <label for="{{ form.id_workplace.id_for_label }}">centro</label>
+                        {{ form.id_workplace|add_class:'form-control' }}
+                    </div>   
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="{{ form.id_Discapacidad.id_for_label }}">Tiene discapacidad?</label>
+                        {{ form.id_Discapacidad|add_class:'form-control' }}
+                    </div>
+                    <div class="form-group col-md-6">
                         <label for="{{ form.id_Tipo_discapacidad.id_for_label }}">Tipo discapacidad</label>
                         {{ form.id_Tipo_discapacidad|add_class:'form-control' }}
+                    </div> 
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="{{ form.fec_ing.id_for_label }}">Fecha de ingreso</label>
+                        {{ form.fec_ing|add_class:'form-control' }}
                     </div>
+                    <div class="form-group col-md-6">
+                        <label for="{{ form.estado_worker.id_for_label }}">Estado</label>
+                        {{ form.estado_worker|add_class:'form-control' }}
+                    </div>
+                </div>
                 <hr>
-                <div class="d-flex">
-                    <button type="submit" id="btnEnviar" class="btn btn-primary">Guardar</button>
+                <div class="d-flex justify-content-center ">
+                    <button type="submit" id="btnEnviar" class="btn btn-primary btn-sm">GUARDAR</button>
                     &nbsp;
                     <a href="{% url 'list_worker' %}">
-                        <button type="button" class="btn btn-secondary">Cancelar</button>
+                        <button type="button" class="btn btn-secondary btn-sm">CANCELAR</button>
                     </a>
                 </div>
             </form>
+            {% if form.errors %}
+            <ul>
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        {% endif %}
             {{ mensaje }}
     </div>
 </main>
