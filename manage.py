@@ -21,5 +21,5 @@ def main():
 
 if __name__ == "__main__":
     main()
-    from apps.Users.seeds import Command
-    Command().handle()
+    '''from apps.Users.seeds import Command
+    Command().handle()'''
