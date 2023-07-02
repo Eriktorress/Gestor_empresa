@@ -33,4 +33,4 @@ class Comuna(models.Model):
 # Modelo de Comuna.
 class Tipodocumento(models.Model):
     id_Tipo_doc= models.AutoField(primary_key=True)
-    name = models.CharField(verbose_name='Archivo', max_length=20)
+    name = models.CharField(verbose_name='Archivo', max_length=40)
