@@ -19,6 +19,7 @@
 
     <!-- link de llamado del css -->
     <link rel="stylesheet" href="{% static 'admin/css/central.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/css/_sidebar.css' %}">
     
      <!-- script iconos de la pagina www.fontawesome.com y ionicons-->
     <script src="https://kit.fontawesome.com/66e7b5da36.js" crossorigin="anonymous"></script>
@@ -65,6 +66,15 @@
   integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" 
   crossorigin="anonymous">
   </script>
+
+  <script>
+    document.getElementById("search-button").addEventListener("click", function() {
+        var searchInput = document.getElementById("search-input").value;
+        
+        // Realizar las acciones correspondientes con el valor de búsqueda (por ejemplo, filtrar las empresas)
+        // ...
+    });
+</script>
 
 
 </html>

@@ -6,6 +6,8 @@ from apps.Worker.models import Worker
 from .forms import CompanyForm
 from django.contrib import messages
 
+from django.contrib.auth.decorators import permission_required
+
 #Home
 def home(request):
     return render(request, 'home.html')
@@ -41,7 +43,8 @@ def delet_company(request, id):
     messages.success(request, "Eliminado correctamente")
     return redirect(to="list_company")
 
-#Editar empresa 
+#Editar empresa
+@permission_required('editar_company')
 def edit_company(request, id):
     company = get_object_or_404(Company, id_company=id)
     workplaces = Workplace.objects.filter(id_company=id)
