@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
+{% load custom_tags %}
 {% block content %}
-
-<br>
+<html>
 <head>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trirong">
     <link rel="stylesheet" href="{% static 'admin/css/form_worker.css' %}">
@@ -11,57 +11,64 @@
 
 <body class="body">
     <main>
-    <div class="row">
-            <div class="col-12 col-md-6">
+        <div >
             <h2 class="titulo">Formulario de centros</h2>
             <hr>
             <form action="" method="post" class="/form_workplace/">
 
                 {% csrf_token %}
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="{{ form.name.id_for_label }}">Nombre</label>
+                        <br>
+                        {{ form.name_workplace|add_class:'form-control'}}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="{{ form.name.id_for_label }}">Dirección:</label>
+                        <br>
+                        {{ form.address|add_class:'form-control'}}
+                    </div>
+                </div>
 
-                <div class="form-group-name">
-                    <label for="{{ form.name.id_for_label }}">Nombre:</label>
-                    <br>
-                    {{ form.name_workplace }}
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="{{ form.name.id_for_label }}">Comuna:</label>
+                        <br>
+                        {{ form.comuna|add_class:'form-control'}}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="{{ form.name.id_for_label }}">Region:</label>
+                        <br>
+                        {{ form.region|add_class:'form-control' }}
+                    </div>
                 </div>
-                <div class="form-group-name">
-                    <label for="{{ form.name.id_for_label }}">Dirección:</label>
-                    <br>
-                    {{ form.adress }}
+
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="{{ form.name.id_for_label }}">Phone:</label>
+                        <br>
+                        {{ form.phone|add_class:'form-control' }}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="{{ form.name.id_for_label }}">Estado centro de trabajo:</label>
+                        <br>
+                        {{ form.estado_workplace|add_class:'form-control' }}
+                    </div>
                 </div>
-                <div class="form-group-name">
-                    <label for="{{ form.name.id_for_label }}">Comuna:</label>
-                    <br>
-                    {{ form.comuna }}
-                </div>
-                <div class="form-group-name">
-                    <label for="{{ form.name.id_for_label }}">Region:</label>
-                    <br>
-                    {{ form.region }}
-                </div>
-                <div class="form-group-name">
-                    <label for="{{ form.name.id_for_label }}">Phone:</label>
-                    <br>
-                    {{ form.phone }}
-                </div>
-                <div class="form-group-name">
-                    <label for="{{ form.name.id_for_label }}">Estado centro de trabajo:</label>
-                    <br>
-                    {{ form.estado_workplace }}
-                </div>
-                <div class="form-group-name">
+
+                <div class="form-group col-md-6">
                     <label for="{{ form.name.id_for_label }}">Id Company:</label>
                     <br>
-                    {{ form.id_company }}
+                    {{ form.id_company|add_class:'form-control' }}
                 </div>
 
-                <hr>
 
-                <div class="d-flex">
-                    <button type="submit" id="btnEnviar" class="btn btn-primary">Guardar</button>
+                <hr>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" id="btnEnviar" class="btn btn-primary btn-sm">GUARDAR</button>
                     &nbsp;
                     <a href="{% url 'list_workplace' %}">
-                        <button type="button" class="btn btn-secondary">Cancelar</button>
+                        <button type="button" class="btn btn-secondary btn-sm">CANCELAR</button>
                     </a>
                 </div>
 
@@ -70,9 +77,10 @@
             {{ mensaje }}
 
         </div>
-    </div>
-    </main>
+    
+</main>
 </body>
+</html>
 {% block js %}
 {% endblock %}
 
