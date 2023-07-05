@@ -71,21 +71,20 @@
               </div>
             </div>
             <br>
-            <div class="form-group col-md-12">
-              <label for="{{ form.name.id_for_label }}">Id Company:</label>
-              <br>
-              {{ form.id_company|add_class:'form-control' }}
-            </div>
+              <div class="form-group col-md-12">
+                <label for="{{ form.name.id_for_label }}">Id Company:</label>
+                <br>
+                {{ form.id_company|add_class:'form-control' }}
+              </div>
             <br>
             <hr>
-
-              <div class="d-flex justify-content-center">
-                  <button type="submit" class="btn btn-primary btn-sm">Guardar</button>
-                  &nbsp;
-                  <a href="{% url 'list_workplace' %}">
-                    <button type="button" class="btn btn-secondary btn-sm">Cancelar</button>
-                  </a>
-              </div>
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary btn-sm">Guardar</button>
+                &nbsp;
+                <a href="{% url 'list_workplace' %}">
+                  <button type="button" class="btn btn-secondary btn-sm">Cancelar</button>
+                </a>
+            </div>
         </form>
               
         {{ mensaje }}
