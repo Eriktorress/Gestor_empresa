@@ -6,6 +6,7 @@
 <head>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trirong">
     <link rel="stylesheet" href="{% static 'admin/css/Button.css' %}">
+    <title>Gestion Empresas</title>
 </head>
 
 <body>
@@ -13,62 +14,62 @@
         <div>
             <h2 class="titulo">Formulario de empresa</h2>
             <hr>
-            <form action="" method="post" class="/form_company/">
-
-                    {% csrf_token %}
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label for="{{ form.name.id_for_label }}">Nombre compañia</label>
-                            {{ form.name_company|add_class:'form-control' }}
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="{{ form.lastname.id_for_label }}">Rut Compañia</label>
-                            {{ form.rut_company|add_class:'form-control' }}
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label for="{{ form.name.id_for_label }}">Dirección</label>
-                            {{ form.address|add_class:'form-control' }}
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="{{ form.lastname.id_for_label }}">Región</label>
-                            {{ form.region|add_class:'form-control' }}
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label for="{{ form.name.id_for_label }}">Comuna</label>
-                            {{ form.comuna|add_class:'form-control' }}
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="{{ form.lastname.id_for_label }}">Telefono</label>
-                            {{ form.phone|add_class:'form-control' }}
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label for="{{ form.name.id_for_label }}">Email</label>
-                            {{ form.email|add_class:'form-control' }}
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="{{ form.lastname.id_for_label }}">Estado de la compañia</label>
-                            {{ form.estado_company|add_class:'form-control' }}
-                        </div>
-                    </div>
-                    <hr>
-
-                    <div class="d-flex justify-content-center">
-                        <button type="submit" id="btnEnviar" class="btn btn-primary btn-sm">Guardar</button>
-                        &nbsp;
-                        <a href="{% url 'list_company' %}">
-                            <button type="button" class="btn btn-secondary btn-sm">Cancelar</button>
-                        </a>
-                    </div>
-                </form>
+        <form action="" method="post" class="/form_company/">
+            {% csrf_token %}
+            <br>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="{{ form.name.id_for_label }}">Nombre compañia</label>
+                    {{ form.name_company|add_class:'form-control' }}
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="{{ form.lastname.id_for_label }}">Rut Compañia</label>
+                    {{ form.rut_company|add_class:'form-control' }}
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="{{ form.name.id_for_label }}">Dirección</label>
+                    {{ form.address|add_class:'form-control' }}
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="{{ form.lastname.id_for_label }}">Región</label>
+                    {{ form.region|add_class:'form-control' }}
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="{{ form.name.id_for_label }}">Comuna</label>
+                    {{ form.comuna|add_class:'form-control' }}
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="{{ form.lastname.id_for_label }}">Telefono</label>
+                    {{ form.phone|add_class:'form-control' }}
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="{{ form.name.id_for_label }}">Email</label>
+                    {{ form.email|add_class:'form-control' }}
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="{{ form.lastname.id_for_label }}">Estado de la compañia</label>
+                    {{ form.estado_company|add_class:'form-control' }}
+                </div>
+            </div>
+            <br>
+            <hr>
+            <div class="d-flex justify-content-center">
+                <button type="submit" id="btnEnviar" class="btn btn-primary btn-sm">Guardar</button>
+                &nbsp;
+                <a href="{% url 'list_company' %}">
+                    <button type="button" class="btn btn-secondary btn-sm">Cancelar</button>
+                </a>
+            </div>
+        </form>
 
                 {{ mensaje }}
 

@@ -1,34 +1,119 @@
-
 {% extends "base.html" %}
 {% load static %}
+{% load custom_tags %}
 {% block content %}
-
-<br>
-
-<div class="row">
-    <div class="col-12 col-md-6">
-        <h2>Editar de Trabajador</h2>
-        <hr>
-        <form action="" method="post" class="/form_worker/">
-
-            {% csrf_token %}
-
-            {{form}}
-
-            <br>
-
-            <div class="d-flex">
-                <a href="{% url 'list_worker' %}">
-                    <button type="button" class="btn btn-secondary">Cancelar</button>
-                </a>
-                &nbsp;
-                <button type="submit" class="btn btn-primary">Editar</button>
-            </div>
-        </form>
-
-        {{ mensaje }}
-
-    </div>
-</div>
-
+<html>
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trirong">
+    <link rel="stylesheet" href="{% static 'admin/css/Button.css' %}">
+</head>
+<!-- HACERLO RESPONSIVO Y PAGINADOR-->
+<body class="body">
+    <main>
+        <div >
+            <h2>Editar Trabajador</h2>
+            <hr>
+            <form action="" method="post" class="/form_worker/">
+                
+                    {% csrf_token %}
+                
+                    
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="{{ form.name.id_for_label }}">Nombre</label>
+                            {{ form.name|add_class:'form-control' }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="{{ form.lastname.id_for_label }}">Apellidos</label>
+                            {{ form.lastname|add_class:'form-control' }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="{{ form.rut.id_for_label }}">RUT</label>
+                            {{ form.rut|add_class:'form-control' }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="{{ form.address.id_for_label }}">Dirección</label>
+                            {{ form.address|add_class:'form-control' }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="{{ form.sexo.id_for_label }}">Sexo</label>
+                            {{ form.sexo|add_class:'form-control' }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="{{ form.fec_nac.id_for_label }}">Fecha de nacimiento</label>
+                            {{ form.fec_nac|add_class:'form-control' }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="{{ form.region.id_for_label }}">Región</label>
+                            {{ form.region|add_class:'form-control' }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="{{ form.comuna.id_for_label }}">Comuna</label>
+                            {{ form.comuna|add_class:'form-control' }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="{{ form.phone.id_for_label }}">Teléfono</label>
+                            {{ form.phone|add_class:'form-control' }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="{{ form.email.id_for_label }}">Email</label>
+                            {{ form.email|add_class:'form-control' }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="{{ form.id_company.id_for_label }}">Company</label>
+                            {{ form.id_company|add_class:'form-control' }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="{{ form.id_workplace.id_for_label }}">centro</label>
+                            {{ form.id_workplace|add_class:'form-control' }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="{{ form.id_Discapacidad.id_for_label }}">Tiene discapacidad?</label>
+                            {{ form.id_Discapacidad|add_class:'form-control' }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="{{ form.id_Tipo_discapacidad.id_for_label }}">Tipo discapacidad</label>
+                            {{ form.id_Tipo_discapacidad|add_class:'form-control' }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="{{ form.fec_ing.id_for_label }}">Fecha de ingreso</label>
+                            {{ form.fec_ing|add_class:'form-control' }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="{{ form.estado_worker.id_for_label }}">Estado</label>
+                            {{ form.estado_worker|add_class:'form-control' }}
+                        </div>
+                    </div>
+                    <br>
+                    <hr>
+                    <div class="d-flex justify-content-center ">
+                        <a href="{% url 'list_worker' %}">
+                            <button type="button" class="btn btn-secondary">Cancelar</button>
+                        </a>
+                        &nbsp;
+                        <button type="submit" class="btn btn-primary">Editar</button>
+                    </div>
+            </form>
+            
+                {{ mensaje }}
+                
+                
+        </div>
+    </main>
+</body>
+</html>
 {% endblock %}
