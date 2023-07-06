@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.shortcuts import render
 from .models import Worker
 from .forms import WorkerForm
-
+from apps.WorkerDocuments.models import WorkerDocuments
 
 # Create your views here.
 
@@ -31,28 +31,42 @@ def form_worker(request):
             messages.error(request, "Error al guardar el formulario")
     return render(request, 'Worker/form_worker.html', data)
 
-#Editar centro de trabajo
-def edit_worker(request, id):
-    worker= get_object_or_404(Worker, id_worker=id)
-
-    data = {
-        'form': WorkerForm(instance=worker)
-    }
-    
+#Editar Trabajador
+def edit_worker(request,id):
+    worker = get_object_or_404(Worker, id_worker=id)
+    workerdocuments = WorkerDocuments.objects.filter(id_worker=id)
     if request.method == 'POST':
-        formulario2 = WorkerForm (data=request.POST, instance=worker)
-        if formulario2.is_valid():
-            formulario2.save()
-            messages.success(request, "Modificado correctamente")
+        form = WorkerForm (request.POST, instance=worker)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Registro agregado correctamente")
             return redirect(to="list_worker")
-        data["form"] = formulario2
+        else:
+            messages.error(request, "Error al editar el formulario")
+    else:
+        form = WorkerForm(instance=worker)
+        
+    context = {
+        'form': form,
+        'worker': worker,
+        'workerdocuments': workerdocuments
+    }
+    return render(request, 'Worker/edit_worker.html', context)
 
-    return render (request, 'Worker/edit_worker.html', data)
-
-#Editar eliminar centro
+#Editar eliminar Trabajador
 
 def delet_worker(request, id):
     worker = get_object_or_404(Worker, id_worker=id)
     worker.delete()
     messages.success(request, "Eliminado correctamente")
     return redirect(to="list_worker")
+
+#Filtrado de Documentos del trabajador
+def worker_documents(request, worker_id):
+    worker = get_object_or_404(Worker, id_worker=worker_id)
+    workerdocuments = WorkerDocuments.objects.filter(id_worker_id=worker_id)
+    context = {
+        'worker': worker,
+        'workerdocuments': workerdocuments,
+    }
+    return render(request, 'Worker/worker_documents.html', context)

@@ -4,7 +4,15 @@
 {% block content %}
 
 <br>
-
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        <a class="nav-link" aria-current="page" href="{% url 'edit_worker' worker.id_worker %}">Trabajador</a>
+    </li> 
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'worker_documents' worker.id_worker %}">Documentos</a>
+    </li>  
+    
+</ul>
 <div class="row">
     <div class="col-12 col-md-6">
         <h2>Editar de Trabajador</h2>

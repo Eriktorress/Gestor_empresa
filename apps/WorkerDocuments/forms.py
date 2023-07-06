@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 class WorkerDocumentsForm(forms.ModelForm):
-
     class Meta:
         model = WorkerDocuments
-        fields = '__all__'
+        fields = '__all__'  
+
