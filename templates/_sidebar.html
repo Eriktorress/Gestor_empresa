@@ -74,7 +74,10 @@
             <br>
             <!-- Dashboard --> 
             <div class="dashboard">
-                <a href="{% url 'home' %}" class="d-block text-light p-1"><i class="icon ion-md-apps mr-2 lead"></i> Dashboard 
+                <a href="{% url 'home' %}" 
+                    title="Dashboard" 
+                    class="d-block text-light p-1">
+                    <i class="icon ion-md-apps mr-2 lead"></i> 
             </div>
             <!-- Configuración --> 
            <div>
@@ -102,9 +105,9 @@
                  aria-expanded="false"
                  aria-controls="collapseExample">
             
-                <i class="icon ion-md-briefcase"></i> 
-                Organización
+                <i class="icon ion-md-briefcase"></i> Organización
            </div>
+           
             <div class="collapse " id="collapseExample"aria-labelledby="dropdownMenuButton">
              <div class="card card-body">
                 <li><a style="color:black" class="dropdown-item" href="{% url 'list_company' %}">Empresas</a></li>
