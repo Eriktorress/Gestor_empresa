@@ -22,3 +22,4 @@ mysqlclient==2.1.1
 django-rut==1.1
 
 django-chartjs==2.3.0
+plotly==5.15.0
