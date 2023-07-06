@@ -1,30 +1,77 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+
+<div id="content">
+  <section class="py-3">
+      <!-- Espacio entre linea gris y bienvenido-->
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-9">
+                  {% if user.is_authenticated %}
+                  <h1 class="font-weight-bold mb-0"> Bienvenido {{ user.username}}</h1>
+                  <p class="lead text-muted"> Revisa la última información</p>
+                  <!-- Botón descargar reporte-->
+                  {% endif %}
+              </div>
+              <div class="col-lg-3 d-flex">
+                  <button class="btn btn-primary w-100 align-self-center"> Descargar reporte</button>
+
+              </div>
+
+          </div>
+      </div>
+  </section>
+  <section class="bg-mix">
+    <div class="container">
+        <div class="card">
+            <div class="row">
+                <!-- Cajas informativas-->
+                <div class="col d-flex stat my-3">
+                    <div class="mx-auto">
+                           <h6 class="text-muted">Trabajadores</h6>
+                        <h4 class="font-weight-bold text-center">
+                           <div id="companyworker-list"></div>
+                        </h4>
+                    </div>
+                </div>
+                <div class="col d-flex stat my-3">
+                    <div class="mx-auto">
+                            <h6 class="text-muted">Centro de trabajo</h6>
+                        <!--trabajadores enlazado con la lista -->
+                        <h4 class="font-weight-bold text-center">
+                          <ul id="companyworkerplace-list"></ul>
+                        </h4>
+                    </div>
+                </div>
+                <div class="col d-flex stat my-3">
+                    <div class="mx-auto">
+                        <h6 class="text-muted">Activos</h6>
+                        <h4 class="font-weight-bold text-center">
+                          <ul id="companyworkeractive-list"></ul>
+                        </h4>  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<br>
 <div class="container">
   <div class="row">
-    <div class="col-lg-6">
+    <div class="col-lg-4">
       <div class="card">
         <div class="card-header">
-          Gráfico de líneas
+          Card 1
         </div>
         <div class="card-body">
-          {{ graph_line_html|safe }}
+          Contenido de la Card 1
         </div>
       </div>
     </div>
-    <div class="col-lg-6">
-      <div class="card">
-        <div class="card-header">
-          Gráfico de torta
-        </div>
-        <div id="grafico-torta"></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row mt-4">
-    <div class="col-lg-6">
+    <div class="col-lg-4">
       <div class="card">
         <div class="card-header">
           Información de la compañía seleccionada
@@ -34,14 +81,33 @@
         </div>
       </div>
     </div>
+    <div class="col-lg-4">
+      <div class="card">
+        <div class="card-header">
+          Distribuición por Sexo
+        </div>
+        <div class="card-body">
+          <div id="grafico-torta"></div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+<br>
+
 
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<!-- Agrega el enlace a la biblioteca html2pdf -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+
 
 <script>
   var graficoTorta = document.getElementById('grafico-torta');
   var companyInfoList = document.getElementById('company-info-list');
+  var companyworker = document.getElementById('companyworker-list');
+  var companyworkerplace = document.getElementById('companyworkerplace-list');
+  var companyworkeractive = document.getElementById('companyworkeractive-list');
 
   function updatePieChart(data) {
     var pieData = [{
@@ -51,23 +117,76 @@
     }];
 
     var pieLayout = {
-      title: 'Conteo de Trabajadores',
       showlegend: true
     };
 
     Plotly.newPlot(graficoTorta, pieData, pieLayout);
   }
 
+  // Limpia la lista de información de la compañía
   function updateCompanyInfoList(results) {
     companyInfoList.innerHTML = ''; // Limpia la lista de información de la compañía
 
-    for (var i = 0; i < results.length; i++) {
-      var company = results[i];
+    for (const element of results) {
+      var company = element;
       var listItem = document.createElement('li');
       listItem.textContent = 'Nombre de la compañía: ' + company.name_company + ', Trabajadores: ' + company.worker_count + ', Hombres: '  + company.male_count + ', Mujeres: '+ company.female_count;
       companyInfoList.appendChild(listItem);
     }
   }
+
+  // Cuenta trabajadores
+  function updateCompanyWorkers(results) {
+    companyworker.innerHTML = ''; // Limpia la lista de información de la compañía
+
+    for (const element of results) {
+      var company = element;
+      var listItem = document.createElement('div');
+      listItem.textContent = company.worker_count;
+      companyworker.appendChild(listItem);
+    }
+  }
+  // Cuenta centros de trabajo
+  function updateCompanyWorkerplace(results) {
+    companyworkerplace.innerHTML = ''; // Limpia la lista de información de la compañía
+
+    for (const element of results) {
+      var company = element;
+      var listItem = document.createElement('div');
+      listItem.textContent = company.workerplace_count;
+      companyworkerplace.appendChild(listItem);
+    }
+  }
+  // Cuenta trabajadores activos
+  function updateCompanyWorkeractive(results) {
+    companyworkeractive.innerHTML = ''; // Limpia la lista de información de la compañía
+
+    for (const element of results) {
+      var company = element;
+      var listItem = document.createElement('div');
+      listItem.textContent = company.workerplace_count_act;
+      companyworkeractive.appendChild(listItem);
+    }
+  }
+
+    //  Descargar el reporte
+    var descargarBoton = document.querySelector('.btn.btn-primary');
+    descargarBoton.addEventListener('click', function() {
+      var contenidoHTML = document.getElementById('content');
+  
+      // Configura las opciones de html2pdf
+      var opciones = {
+        margin: [15, 15, 15, 15],
+        filename: 'reporte.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+  
+      // Convierte el contenido HTML en PDF y descárgalo
+      html2pdf().set(opciones).from(contenidoHTML).save();
+    });
+
 
   document.getElementById('search-form').addEventListener('submit', function(event) {
     event.preventDefault();
@@ -99,6 +218,9 @@
 
           updatePieChart(pieChartData);
           updateCompanyInfoList(results);
+          updateCompanyWorkers(results);
+          updateCompanyWorkerplace(results);
+          updateCompanyWorkeractive(results);
         } else {
           console.log('No se encontraron resultados');
         }

@@ -105,8 +105,10 @@ def search_company(request):
                 'id_company': company.id_company,
                 'name_company': company.name_company,
                 'worker_count': Worker.objects.filter(id_company=company.id_company).count(),
+                'workerplace_count': Workplace.objects.filter(id_company=company.id_company).count(),
                 'male_count': Worker.objects.filter(id_company=company.id_company, sexo__name='Masculino').count(),
                 'female_count': Worker.objects.filter(id_company=company.id_company, sexo__name='Femenino').count(),
+                'workerplace_count_act': Worker.objects.filter(id_company=company.id_company, estado_worker__name='Activo').count(),
             
             }
             for company in results
