@@ -3,15 +3,12 @@
 {% load custom_tags %}
 {% block content %}
 
-
-
-
 <html>
 <head>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trirong">
     <link rel="stylesheet" href="{% static 'admin/css/Button.css' %}">
 </head>
-<br>
+
 <ul class="nav nav-tabs">
     <li class="nav-item">
         <a class="nav-link" aria-current="page" href="{% url 'edit_worker' worker.id_worker %}">Trabajador</a>
@@ -25,7 +22,7 @@
 <body class="body">
     <main>
         <div >
-            <h2>Editar Trabajador</h2>
+            <h1 style=" border: 15px solid rgb(255, 255, 255);">Editar Trabajador</h1>
             <hr>
             <form action="" method="post" class="/form_worker/">
                 
