@@ -1,50 +1,97 @@
-
 {% extends "base.html" %}
 {% load static %}
+{% load custom_tags %}
 {% block content %}
+<html>
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trirong">
+    <link rel="stylesheet" href="{% static 'admin/css/form_worker.css' %}">
+    <title>Gestion Empresas</title>
+</head>
 
-<br>
+  <body class="body">
+    <main>
+      <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Active</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          </li>
+      </ul>
+    
 
-<ul class="nav nav-tabs">
-    <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="#">Active</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-    </li>
-  </ul>
-
-
-<div class="row">
-    <div class="col-12 col-md-6">
-        <h2>Editar Centro de trabajo</h2>
+    <div>
+        <h2 >Editar Centro de trabajo</h2>
         <hr>
         <form action="" method="post" class="/form_workplace/">
-
             {% csrf_token %}
-
-            {{form}}
-
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="{{ form.name.id_for_label }}">Nombre</label>
+                    <br>
+                    {{ form.name_workplace|add_class:'form-control'}}
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="{{ form.name.id_for_label }}">Dirección:</label>
+                    <br>
+                    {{ form.address|add_class:'form-control'}}
+                </div>
+            </div>
             <br>
-
-            <div class="d-flex">
-                <a href="">
-                    <button type="button" class="btn btn-secondary">Cancelar</button>
-                </a>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="{{ form.name.id_for_label }}">Comuna:</label>
+                    <br>
+                    {{ form.comuna|add_class:'form-control'}}
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="{{ form.name.id_for_label }}">Region:</label>
+                    <br>
+                    {{ form.region|add_class:'form-control' }}
+                </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="form-group col-md-6">
+                  <label for="{{ form.name.id_for_label }}">Phone:</label>
+                  <br>
+                  {{ form.phone|add_class:'form-control' }}
+              </div>
+              <div class="form-group col-md-6">
+                  <label for="{{ form.name.id_for_label }}">Estado centro de trabajo:</label>
+                  <br>
+                  {{ form.estado_workplace|add_class:'form-control' }}
+              </div>
+            </div>
+            <br>
+              <div class="form-group col-md-12">
+                <label for="{{ form.name.id_for_label }}">Id Company:</label>
+                <br>
+                {{ form.id_company|add_class:'form-control' }}
+              </div>
+            <br>
+            <hr>
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary btn-sm">Guardar</button>
                 &nbsp;
-                <button type="submit" class="btn btn-primary">Guardar</button>
+                <a href="{% url 'list_workplace' %}">
+                  <button type="button" class="btn btn-secondary btn-sm">Cancelar</button>
+                </a>
             </div>
         </form>
-
+              
         {{ mensaje }}
-
-    </div>
-</div>
-
+      </div>
+    </main>
+  </body>
+</html>
+{% block js %}
+{% endblock %}
 {% endblock %}

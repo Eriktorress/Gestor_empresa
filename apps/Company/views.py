@@ -44,17 +44,19 @@ def delet_company(request, id):
     return redirect(to="list_company")
 
 #Editar empresa
-@permission_required('editar_company')
+#@permission_required('editar_company')
+
 def edit_company(request, id):
     company = get_object_or_404(Company, id_company=id)
     workplaces = Workplace.objects.filter(id_company=id)
     workers = Worker.objects.filter(id_company=id)
+
     if request.method == 'POST':
         form = CompanyForm(request.POST, instance=company)
         if form.is_valid():
             form.save()
             messages.success(request, "Modificado correctamente")
-            return redirect('list_company')
+            return redirect(to="list_company")
     else:
         form = CompanyForm(instance=company)
     context = {
