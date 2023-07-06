@@ -1,15 +1,17 @@
 from django.contrib import admin
 from django.urls import path, re_path, include
 from apps.Company.views import delet_company, form_company,list_company,edit_company,\
-    home, company_workplaces,company_workers
+    company_workplaces,company_workers, search_company
 from apps.Users.views import signup,signout, signin
-from apps.Workplace.views import list_workplace,form_workplace, edit_workplace,\
+from apps.Workplace.views import list_workplace, form_workplace, edit_workplace,\
     delet_workplace
 from apps.Worker.views import list_worker, form_worker,edit_worker,delet_worker,worker_documents
 from apps.WorkerDocuments.views import list_workdoc,form_workdoc,edit_workdoc,delet_workdoc
+from apps.Maintainers.views import dashboard
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path ('', dashboard, name='dashboard'),
     
     #-------- Users --------
     path('signin/', signin, name='signin'),
@@ -25,6 +27,8 @@ urlpatterns = [
 
     path('company_workplaces/<int:company_id>/', company_workplaces, name='company_workplaces'),
     path('company_workers/<int:company_id>/', company_workers, name='company_workers'),
+    
+    path('search_company/', search_company, name='search_company'),
 
 
    #-------- Centros --------
@@ -41,7 +45,6 @@ urlpatterns = [
     path ('Delete_worker/<id>/', delet_worker, name='delet_worker'),
 
     path('worker_documents/<int:worker_id>/', worker_documents, name='worker_documents'),
-    path ('', home, name='home'),
     
     #-----WorkerDocuments-----
     path ('List_workdoc/', list_workdoc, name='list_workdoc'),

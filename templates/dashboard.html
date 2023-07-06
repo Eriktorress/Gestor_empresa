@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          Gráfico de líneas
+        </div>
+        <div class="card-body">
+          {{ graph_line_html|safe }}
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          Gráfico de torta
+        </div>
+        <div id="grafico-torta"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          Información de la compañía seleccionada
+        </div>
+        <div class="card-body">
+          <ul id="company-info-list"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<script>
+  var graficoTorta = document.getElementById('grafico-torta');
+  var companyInfoList = document.getElementById('company-info-list');
+
+  function updatePieChart(data) {
+    var pieData = [{
+      labels: data.labels,
+      values: data.values,
+      type: 'pie'
+    }];
+
+    var pieLayout = {
+      title: 'Conteo de Trabajadores',
+      showlegend: true
+    };
+
+    Plotly.newPlot(graficoTorta, pieData, pieLayout);
+  }
+
+  function updateCompanyInfoList(results) {
+    companyInfoList.innerHTML = ''; // Limpia la lista de información de la compañía
+
+    for (var i = 0; i < results.length; i++) {
+      var company = results[i];
+      var listItem = document.createElement('li');
+      listItem.textContent = 'Nombre de la compañía: ' + company.name_company + ', Trabajadores: ' + company.worker_count + ', Hombres: '  + company.male_count + ', Mujeres: '+ company.female_count;
+      companyInfoList.appendChild(listItem);
+    }
+  }
+
+  document.getElementById('search-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    var searchInput = document.getElementById('search-input');
+    var searchTerm = searchInput.value;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/search_company/?q=' + searchTerm, true);
+    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+        var results = JSON.parse(xhr.responseText);
+
+        console.log('Resultados de búsqueda:', results);
+
+        if (results.length > 0) {
+          var pieChartData = {
+            labels: ['Femenino', 'Masculino'],
+            values: [
+              results.reduce(function(total, result) {
+                return total + result.female_count;
+              }, 0),
+              results.reduce(function(total, result) {
+                return total + result.male_count;  
+              }, 0)
+            ]
+          };
+
+          updatePieChart(pieChartData);
+          updateCompanyInfoList(results);
+        } else {
+          console.log('No se encontraron resultados');
+        }
+      }
+    };
+    xhr.send();
+  });
+</script>
+{% endblock %}

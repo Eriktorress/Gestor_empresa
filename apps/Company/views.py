@@ -5,12 +5,10 @@ from apps.Workplace.models import Workplace
 from apps.Worker.models import Worker
 from .forms import CompanyForm
 from django.contrib import messages
-
-from django.contrib.auth.decorators import permission_required
-
-#Home
-def home(request):
-    return render(request, 'home.html')
+from django.http import JsonResponse
+from django.db.models import Q
+import plotly.graph_objects as go
+from django.db.models import Count
 
 #Listar empresa
 def list_company(request):
@@ -44,8 +42,6 @@ def delet_company(request, id):
     return redirect(to="list_company")
 
 #Editar empresa
-#@permission_required('editar_company')
-
 def edit_company(request, id):
     company = get_object_or_404(Company, id_company=id)
     workplaces = Workplace.objects.filter(id_company=id)
@@ -81,6 +77,7 @@ def company_workplaces(request, company_id):
 
 
 #Filtrado de trabajadores de la empresa 
+
 def company_workers(request, company_id):
     company = get_object_or_404(Company, id_company=company_id)
     workers = Worker.objects.filter(id_company=company_id)
@@ -89,3 +86,42 @@ def company_workers(request, company_id):
         'workers': workers,
     }
     return render(request, 'Company/company_workers.html', context)
+
+#Buscador de 
+
+def search_company(request):
+    id_company = request.GET.get('id_company')
+    if id_company is None:
+        print("Empresa no tomada")  # Imprime el mensaje en la consola del servidor
+    else:
+        print(id_company)  # Imprime el valor del ID de la empresa en la consola del servidor
+
+    query = request.GET.get('q', '')
+
+    if query:
+        results = Company.objects.filter(name_company__icontains=query)
+        results = [
+            {
+                'id_company': company.id_company,
+                'name_company': company.name_company,
+                'worker_count': Worker.objects.filter(id_company=company.id_company).count(),
+                'male_count': Worker.objects.filter(id_company=company.id_company, sexo__name='Masculino').count(),
+                'female_count': Worker.objects.filter(id_company=company.id_company, sexo__name='Femenino').count(),
+            
+            }
+            for company in results
+        ]
+    else:
+        results = []
+
+    # Verifica si la solicitud es una petición AJAX (por ejemplo, realizada por el buscador)
+    if request.is_ajax():
+        return JsonResponse(results, safe=False)
+
+    # Si no es una petición AJAX, renderiza la plantilla del Dashboard.html con los resultados de búsqueda y el gráfico de torta
+    return render(request, 'dashboard.html', {'results': results, 'id_company': id_company})
+
+
+
+
+
