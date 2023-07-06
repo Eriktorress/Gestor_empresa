@@ -2,14 +2,13 @@
 
 <header nav class="navbar navbar-expand-lg"> 
 
+<div class="container-fluid" id="container">
 
-        <div class="container-fluid" id="container">
-
-            <!-- NavBar -->
-            <!-- Icono Desplegable -->
-            <div class="icon_menu">
-                <i class="fa-solid fa-bars" id="btn_open"></i>
-            </div>
+<!-- NavBar -->
+<!-- Icono Desplegable -->
+<div class="icon_menu">
+    <i class="fa-solid fa-bars" id="btn_open"></i>
+</div>
             
 <!-- dashboard.html -->
 <form id="search-form" method="GET" action="{% url 'search_company' %}">
@@ -97,51 +96,47 @@
 
   // Cargar el valor de búsqueda al cargar la página
   loadSearchValue();
-</script>
-
-              
-
-                  
+</script>   
             <!-- Logout -->
-            <div class="spacer ml-auto" class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav">
-                    <li class="nav-item dropdown">
-                      <div class="usuario">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {% if user.is_authenticated %}
-                            <img src="{% static 'admin/img/usuario.png' %}" class="img-fluid rounded-circle avatar mr-2">
-                            {{ user.username }}
-                            {% endif %}
-                        </a>
+        <div class="spacer ml-auto" class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                  <div class="usuario">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {% if user.is_authenticated %}
+                        <img src="{% static 'admin/img/usuario.png' %}" class="img-fluid rounded-circle avatar mr-2">
+                        {{ user.username }}
+                        {% endif %}
+                    </a>
+                    
+                    <!-- BUTTON TRIGGER MODAL-->
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Perfil</a>
+                        <div class="dropdown-divider"></div>
                         
-                        <!-- BUTTON TRIGGER MODAL-->
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Perfil</a>
-                            <div class="dropdown-divider"></div>
-                            
-                                <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal"> Cerrar sesión</button>
-                        </ul>
-            
-                        <!-- MODAL-->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" >
-                            <div class="modal-dialog" >
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">¿Está seguro que desea cerrar sesión?</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"data-bs-dismiss="modal"> Seguir navegando</button>
-                                        <a href="{% url 'signin' %}"><button type="button" class="btn btn-danger">Cerrar sesión</button></a>
-                                    </div>
+                            <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal"> Cerrar sesión</button>
+                    </ul>
+                  
+                    <!-- MODAL-->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" >
+                        <div class="modal-dialog" >
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">¿Está seguro que desea cerrar sesión?</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"data-bs-dismiss="modal"> Seguir navegando</button>
+                                    <a href="{% url 'signin' %}"><button type="button" class="btn btn-danger">Cerrar sesión</button></a>
                                 </div>
                             </div>
                         </div>
-                     </div> 
-                    </li>
-                </ul>
-            </div>
+                    </div>
+                 </div> 
+                </li>
+            </ul>
+        </div>
         </div>
     </nav>
 </header>
@@ -157,23 +152,27 @@
              <!-- Sidebar contenido-->  
         <div class="options__menu">
             <br>
-
            <!-- Dashboard --> 
-            <div>
-                <a href="{% url 'dashboard' %}" class="d-block text-light p-1"><i class="icon ion-md-apps mr-2 lead"></i> Dashboard 
+           <a class="d-block text-light p-2" href="{% url 'dashboard' %}" title="Dashboard">
+            <div class="option">
+                <i class="icon ion-md-apps mr-2 lead"></i>
+                <h4>Dashboard</h4>
             </div>
+           </a>
             <!-- Configuración --> 
-           <div>
-                <a class="d-block text-light p-1" title="Configuración"
-                    data-bs-toggle="collapse"
-                    role="button" 
-                    data-bs-target="#collapseExample1" 
-                    aria-expanded="false"
-                    aria-controls="collapseExample">
-            
-                    <i class="icon ion-md-construct mr-2 lead"></i> Configuración
-                </a>
-           </div>
+            <br>
+            <a class="d-block text-light p-1" title="Configuración"
+                data-bs-toggle="collapse"
+                role="button" 
+                data-bs-target="#collapseExample1" 
+                aria-expanded="false"
+                aria-controls="collapseExample">
+              <div class="option">
+                  <i class="icon ion-md-construct mr-2 lead"></i>
+                  <h4>Configuración</h4>
+              </div>
+            </a>
+          
            <div class="collapse " id="collapseExample1"aria-labelledby="dropdownMenuButton">
                 <div class="card card-body">
                     <li><a style="color:black" class="dropdown-item" href="#">Usuarios</a></li>
@@ -182,15 +181,17 @@
            </div>
            
            <!-- Organizacion --> 
-           <div class="d-block text-light p-1" title="Organización"
+           <a class="d-block text-light p-1" title="Organización"
                 data-bs-toggle="collapse"
                 role="button" 
                 data-bs-target="#collapseExample" 
                 aria-expanded="false"
                 aria-controls="collapseExample">
+              <div class="option">
                <i class="icon ion-md-briefcase"></i> 
-               Organización
-           </div>
+               <h4> Organización</h4>
+              </div>
+          </a>
            
            <div class="collapse" id="collapseExample" aria-labelledby="dropdownMenuButton">
                <div class="card card-body">
@@ -200,7 +201,7 @@
                    <li><a style="color:black" class="dropdown-item" href="{% url 'list_workdoc' %}">Documentos</a></li>
                </div>
            </div>
-
+          </div>
         </div>
     </div>
 

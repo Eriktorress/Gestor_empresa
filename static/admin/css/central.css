@@ -136,10 +136,6 @@ a.selected{
    color: #fff;
 }
 
-.dashboard{
-   margin-top: 50px;
-}
-
 .selected:before{
    content: '';
    width: 3px;
