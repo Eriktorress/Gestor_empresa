@@ -20,3 +20,5 @@ crispy-bootstrap5==0.7
 django-crispy-forms==2.0
 mysqlclient==2.1.1
 django-rut==1.1
+
+django-chartjs==2.3.0
