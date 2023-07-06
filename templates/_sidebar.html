@@ -1,6 +1,8 @@
 {% load static %}
 
+
 <header nav class="navbar navbar-expand-lg"> 
+
 
         <div class="container-fluid" id="container">
 
@@ -9,12 +11,98 @@
             <div class="icon_menu">
                 <i class="fa-solid fa-bars" id="btn_open"></i>
             </div>
-
-            <div class="mt-2 mb-2">
-                <input id="search-input" class="search-input" type="text" placeholder="Buscar empresa">
-                <button id="search-button" class="search-button">Buscar</button>
-            </div>
             
+<!-- dashboard.html -->
+<form id="search-form" method="GET" action="{% url 'search_company' %}">
+  <div class="input-group ps-5">
+    <div id="navbar-search-autocomplete" class="form-outline">
+      <input type="search" id="search-input" class="form-control" autocomplete="off" />
+      <input type="hidden" name="id_company" id="id-company-input" value="" /> <!-- Obtén el id de la empresa -->
+      <label class="form-label" for="search-input"></label>
+      <div id="search-results" class="autocomplete-results"></div>
+    </div>
+  </div>
+</form>
+
+<script>
+  var searchInput = document.getElementById('search-input');
+  var searchResults = document.getElementById('search-results');
+  var idCompanyInput = document.getElementById('id-company-input');
+  var searchTimeout = null;
+
+  // Función para realizar la búsqueda y mostrar los resultados
+  function performSearch(query) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/search_company/?q=' + query, true);
+    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+        var results = JSON.parse(xhr.responseText);
+        searchResults.innerHTML = '';
+
+        if (results.length > 0) {
+          var resultList = document.createElement('ul');
+          results.forEach(function (company) {
+            var listItem = document.createElement('li');
+            var link = document.createElement('a');
+            link.href = '#'; // Enlace vacío para que no redireccione
+            link.textContent = company.name_company;
+            link.addEventListener('click', function (event) {
+              event.preventDefault();
+              searchInput.value = company.name_company; // Establece el valor seleccionado en el campo de búsqueda
+              idCompanyInput.value = company.id_company; // Establece el ID de la compañía seleccionada en el campo oculto
+              localStorage.setItem('selectedCompany', JSON.stringify(company)); // Almacena la empresa seleccionada en localStorage
+              searchResults.innerHTML = ''; // Limpia los resultados de búsqueda
+              handleCompanySelection(company.id_company); // Llama a la función handleCompanySelection con el ID de la compañía seleccionada
+            });
+            listItem.appendChild(link);
+            resultList.appendChild(listItem);
+          });
+          searchResults.appendChild(resultList);
+        }
+      }
+    };
+    xhr.send();
+  }
+
+  // Evento de entrada de texto en el buscador
+  searchInput.addEventListener('input', function (event) {
+    var query = searchInput.value.trim();
+
+    clearTimeout(searchTimeout);
+
+    if (query.length > 0) {
+      searchTimeout = setTimeout(function () {
+        performSearch(query);
+      }, 300);
+    } else {
+      searchResults.innerHTML = '';
+    }
+  });
+
+  // Función para manejar la selección de una compañía
+  function handleCompanySelection(companyId) {
+    var searchForm = document.getElementById('search-form');
+    searchForm.submit();
+  }
+
+  // Función para cargar el valor de búsqueda al cargar la página
+  function loadSearchValue() {
+    var selectedCompany = localStorage.getItem('selectedCompany');
+    if (selectedCompany) {
+      selectedCompany = JSON.parse(selectedCompany);
+      searchInput.value = selectedCompany.name_company; // Restaura el valor en el campo de búsqueda
+      idCompanyInput.value = selectedCompany.id_company; // Restaura el ID de la compañía en el campo oculto
+    }
+  }
+
+  // Cargar el valor de búsqueda al cargar la página
+  loadSearchValue();
+</script>
+
+              
+
+                  
             <!-- Logout -->
             <div class="spacer ml-auto" class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav">
@@ -85,7 +173,7 @@
 
            <!-- Dashboard --> 
             <div>
-                <a href="{% url 'home' %}" class="d-block text-light p-1"><i class="icon ion-md-apps mr-2 lead"></i> Dashboard 
+                <a href="{% url 'dashboard' %}" class="d-block text-light p-1"><i class="icon ion-md-apps mr-2 lead"></i> Dashboard 
             </div>
 
            <!-- Configuración --> 
@@ -108,28 +196,24 @@
                 </div>
            </div>
            
-
-
-
-            <!-- Organizacion --> 
-            <div class="d-block text-light p-1" title="Organización"
-                 data-bs-toggle="collapse"
-                 role="button" 
-                 data-bs-target="#collapseExample" 
-                 aria-expanded="false"
-                 aria-controls="collapseExample">
-            
-                <i class="icon ion-md-briefcase"></i> 
-                Organización
+           <!-- Organizacion --> 
+           <div class="d-block text-light p-1" title="Organización"
+                data-bs-toggle="collapse"
+                role="button" 
+                data-bs-target="#collapseExample" 
+                aria-expanded="false"
+                aria-controls="collapseExample">
+               <i class="icon ion-md-briefcase"></i> 
+               Organización
            </div>
            
-           <div class="collapse " id="collapseExample"aria-labelledby="dropdownMenuButton">
-             <div class="card card-body">
-                <li><a style="color:black" class="dropdown-item" href="{% url 'list_company' %}">Empresas</a></li>
-                <li><a style="color:black" class="dropdown-item" href="{% url 'list_workplace' %}">Centros de trabajo</a></li>
-                <li><a style="color:black" class="dropdown-item" href="{% url 'list_worker' %}">Trabajadores</a></li>
-                <li><a style="color:black" class="dropdown-item" href="{% url 'list_workdoc' %}">Documentos</a></li>
-             </div>
+           <div class="collapse" id="collapseExample" aria-labelledby="dropdownMenuButton">
+               <div class="card card-body">
+                   <li><a style="color:black" class="dropdown-item" href="{% url 'list_company' %}">Empresas</a></li>
+                   <li><a style="color:black" class="dropdown-item" href="{% url 'list_workplace' %}">Centros de trabajo</a></li>
+                   <li><a style="color:black" class="dropdown-item" href="{% url 'list_worker' %}">Trabajadores</a></li>
+                   <li><a style="color:black" class="dropdown-item" href="{% url 'list_workdoc' %}">Documentos</a></li>
+               </div>
            </div>
 
         </div>
@@ -139,5 +223,3 @@
 
 
 </header>
-
-
