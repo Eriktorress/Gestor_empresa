@@ -1,5 +1,6 @@
 {% load static %}
 
+<!-- NavBar -->
 <header nav class="navbar navbar-expand-lg"> 
 
         <div class="container-fluid" id="container">
@@ -10,85 +11,72 @@
                 <i class="fa-solid fa-bars" id="btn_open"></i>
             </div>
 
+            <!-- BUSCADOR -->
             <div class="mt-2 mb-2">
                 <input id="search-input" class="search-input" type="text" placeholder="Buscar empresa">
                 <button id="search-button" class="search-button">Buscar</button>
             </div>
             
-            <!-- Logout -->
+            <!-- Logout MODAL-->
             <div class="spacer ml-auto" class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
+                      <div class="usuario">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {% if user.is_authenticated %}
-                            <img src="{% static 'css/Imagenes/Icono.jpg' %}" class="img-fluid rounded-circle avatar mr-2">
+                            <img src="{% static 'admin/img/usuario.png' %}" class="img-fluid rounded-circle avatar mr-2">
                             {{ user.username }}
                             {% endif %}
                         </a>
-    
+                        
+                        <!-- BUTTON TRIGGER MODAL-->
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">
-                                Perfil
-                            </a>
+                            <a class="dropdown-item" href="#">Perfil</a>
                             <div class="dropdown-divider"></div>
-                            <li>
-                                <button class="dropdown-item" type="button" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal"> Cerrar sesión
-                                </button>
-                            </li>
+                            
+                                <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal"> Cerrar sesión</button>
                         </ul>
-    
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
+            
+                        <!-- MODAL-->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" >
+                            <div class="modal-dialog" >
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">
-                                            ¿Está seguro que desea cerrar sesión?
-                                        </h5>
-    
-                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
+                                        <h5 class="modal-title" id="exampleModalLabel">¿Está seguro que desea cerrar sesión?</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal"> Seguir navegando
-                                        </button>
-                                        <a href="{% url 'signin' %}">
-                                            <button type="button" class="btn btn-danger">Cerrar sesión
-                                            </button>
-                                        </a>
+                                        <button type="button" class="btn btn-secondary"data-bs-dismiss="modal"> Seguir navegando</button>
+                                        <a href="{% url 'signin' %}"><button type="button" class="btn btn-danger">Cerrar sesión</button></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                     </div> 
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-
+</header>
 
 <body id="body" style="margin-top: 0;" >
 
      <!-- Sidebar titulo --> 
     <div class="menu__side" id="menu_side">
         <div class="name__page">
-            <h2>Gestión Web</h2>
+            <img src="{% static 'admin/img/logotype.png' %}" >
         </div>
 
-         <!-- Sidebar contenido-->  
+             <!-- Sidebar contenido-->  
         <div class="options__menu">
             <br>
-
-           <!-- Dashboard --> 
-            <div>
+            <!-- Dashboard --> 
+            <div class="dashboard">
                 <a href="{% url 'home' %}" class="d-block text-light p-1"><i class="icon ion-md-apps mr-2 lead"></i> Dashboard 
             </div>
-
-           <!-- Configuración --> 
+            <!-- Configuración --> 
            <div>
                 <a class="d-block text-light p-1" title="Configuración"
                     data-bs-toggle="collapse"
@@ -100,17 +88,12 @@
                     <i class="icon ion-md-construct mr-2 lead"></i> Configuración
                 </a>
            </div>
-
            <div class="collapse " id="collapseExample1"aria-labelledby="dropdownMenuButton">
                 <div class="card card-body">
                     <li><a style="color:black" class="dropdown-item" href="#">Usuarios</a></li>
                     <li><a style="color:black" class="dropdown-item" href="#">Perfil</a></li>
                 </div>
            </div>
-           
-
-
-
             <!-- Organizacion --> 
             <div class="d-block text-light p-1" title="Organización"
                  data-bs-toggle="collapse"
@@ -122,8 +105,7 @@
                 <i class="icon ion-md-briefcase"></i> 
                 Organización
            </div>
-           
-           <div class="collapse " id="collapseExample"aria-labelledby="dropdownMenuButton">
+            <div class="collapse " id="collapseExample"aria-labelledby="dropdownMenuButton">
              <div class="card card-body">
                 <li><a style="color:black" class="dropdown-item" href="{% url 'list_company' %}">Empresas</a></li>
                 <li><a style="color:black" class="dropdown-item" href="{% url 'list_workplace' %}">Centros de trabajo</a></li>
@@ -138,6 +120,6 @@
 </body>
 
 
-</header>
+
 
 

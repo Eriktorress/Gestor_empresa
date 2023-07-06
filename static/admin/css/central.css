@@ -43,6 +43,15 @@ header{
    position: absolute;
 }
 
+.usuario img{
+   position: absolute;
+   width: 40px;
+   height: 100%;
+   top: 0;
+   left: -40;
+   object-fit: cover;
+}
+
 .menu__side{
    width: 80px;
    height: 100%;
@@ -75,6 +84,13 @@ header{
    display: flex;
    align-items: center;
    margin-top: 10px;
+}
+.name__page img{ 
+   width: 100px;
+   margin: 15px;
+   margin-left: 40px;
+   border-radius: 50%;
+   border: 3px solid #b4b8b9;
 }
 
 .name__page i{
@@ -118,6 +134,10 @@ header{
 }
 a.selected{
    color: #fff;
+}
+
+.dashboard{
+   margin-top: 50px;
 }
 
 .selected:before{
