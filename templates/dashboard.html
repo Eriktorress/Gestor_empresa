@@ -67,7 +67,7 @@
           Card 1
         </div>
         <div class="card-body">
-          Contenido de la Card 1
+          <div id="grafico-torta-disability"></div>
         </div>
       </div>
     </div>
@@ -84,7 +84,7 @@
     <div class="col-lg-4">
       <div class="card">
         <div class="card-header">
-          Distribuición por Sexo
+          Distribución por sexo
         </div>
         <div class="card-body">
           <div id="grafico-torta"></div>
@@ -104,6 +104,7 @@
 
 <script>
   var graficoTorta = document.getElementById('grafico-torta');
+  var graficoTortadisability = document.getElementById('grafico-torta-disability');
   var companyInfoList = document.getElementById('company-info-list');
   var companyworker = document.getElementById('companyworker-list');
   var companyworkerplace = document.getElementById('companyworkerplace-list');
@@ -121,6 +122,20 @@
     };
 
     Plotly.newPlot(graficoTorta, pieData, pieLayout);
+  }
+
+  function updatePieChartDisability(data) {
+    var pieData = [{
+      labels: data.labels,
+      values: data.values,
+      type: 'pie'
+    }];
+  
+    var pieLayout = {
+      showlegend: true
+    };
+  
+    Plotly.newPlot(graficoTortadisability, pieData, pieLayout);
   }
 
   // Limpia la lista de información de la compañía
@@ -169,7 +184,7 @@
     }
   }
 
-    //  Descargar el reporte
+    //  Descargar el reporte PDF
     var descargarBoton = document.querySelector('.btn.btn-primary');
     descargarBoton.addEventListener('click', function() {
       var contenidoHTML = document.getElementById('content');
@@ -216,11 +231,42 @@
             ]
           };
 
+          var pieChartDataDisability = {
+            labels: ['Intelectual o Cognitiva',
+            'Sensorial Visual',
+            'Sensorial Auditiva',
+            'Psíquica o Mental',
+            'Visceral',
+            'Física'],
+            values: [
+              results.reduce(function(total, result) {
+                return total + result.disability_count_Intelectual;
+              }, 0),
+              results.reduce(function(total, result) {
+                return total + result.disability_count_Sensorial_Visual;
+              }, 0),
+              results.reduce(function(total, result) {
+                return total + result.disability_count_Sensorial_Auditiva;
+              }, 0),
+              results.reduce(function(total, result) {
+                return total + result.disability_count_Psíquica_Mental;
+              }, 0),
+              results.reduce(function(total, result) {
+                return total + result.disability_count_Visceral;
+              }, 0),
+              results.reduce(function(total, result) {
+                return total + result.disability_count_Física;
+              }, 0)
+            ]
+          };
+        
           updatePieChart(pieChartData);
+          updatePieChartDisability(pieChartDataDisability);
           updateCompanyInfoList(results);
           updateCompanyWorkers(results);
           updateCompanyWorkerplace(results);
           updateCompanyWorkeractive(results);
+  
         } else {
           console.log('No se encontraron resultados');
         }

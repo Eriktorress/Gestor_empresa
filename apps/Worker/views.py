@@ -5,7 +5,6 @@ from .models import Worker
 from .forms import WorkerForm
 from apps.WorkerDocuments.models import WorkerDocuments
 
-# Create your views here.
 
 #Listar company de trabajos
 def list_worker(request):
