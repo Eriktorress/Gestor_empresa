@@ -18,7 +18,8 @@ def form_worker(request):
     data = {
         'form': WorkerForm(),
     }
-
+    
+    
     if request.method == 'POST':
         formulario_worker = WorkerForm (data=request.POST)
         if formulario_worker.is_valid():
@@ -28,6 +29,8 @@ def form_worker(request):
         else:
             data["form"] = formulario_worker
             messages.error(request, "Error al guardar el formulario")
+            
+
     return render(request, 'Worker/form_worker.html', data)
 
 #Editar Trabajador

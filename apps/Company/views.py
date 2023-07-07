@@ -108,6 +108,8 @@ def search_company(request):
                 'workerplace_count': Workplace.objects.filter(id_company=company.id_company).count(),
                 'male_count': Worker.objects.filter(id_company=company.id_company, sexo__name='Masculino').count(),
                 'female_count': Worker.objects.filter(id_company=company.id_company, sexo__name='Femenino').count(),
+                'disability_count_yes': Worker.objects.filter(id_company=company.id_company, id_Discapacidad__name='Si').count(),
+                'disability_count_no': Worker.objects.filter(id_company=company.id_company, id_Discapacidad__name='No').count(),
                 'workerplace_count_act': Worker.objects.filter(id_company=company.id_company, estado_worker__name='Activo').count(),
                 'disability_count_Intelectual': Worker.objects.filter(id_company=company.id_company, id_Tipo_discapacidad__name='Intelectual o Cognitiva').count(),
                 'disability_count_Sensorial_Visual': Worker.objects.filter(id_company=company.id_company, id_Tipo_discapacidad__name='Sensorial Visual').count(),

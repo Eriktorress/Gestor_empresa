@@ -82,13 +82,14 @@
                 </div>
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label for="{{ form.id_Discapacidad.id_for_label }}">Tiene discapacidad?</label>
+                        <label for="{{ form.id_Discapacidad.id_for_label }}">¿Posee algun grado de discapacidad?</label>
                         {{ form.id_Discapacidad|add_class:'form-control' }}
                     </div>
-                    <div class="form-group col-md-6">
-                        <label for="{{ form.id_Tipo_discapacidad.id_for_label }}">Tipo discapacidad</label>
+                    <div id="tipoDiscapacidadField" class="form-group col-md-6" style="display: none;">
+                        <label for="{{ form.id_Tipo_discapacidad.id_for_label }}">¿Cual?</label>
                         {{ form.id_Tipo_discapacidad|add_class:'form-control' }}
-                    </div> 
+                    </div>
+                    
                 </div>
                 <div class="row">
                     <div class="form-group col-md-6">
@@ -125,6 +126,39 @@
 </html>
 
 {% block js %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        const discapacidadField = $('#id_Discapacidad');
+        const tipoDiscapacidadField = $('#tipoDiscapacidadField');
+
+        discapacidadField.on('change', function() {
+            console.log('Evento de cambio activado');
+            console.log(discapacidadField.val());
+            console.log('Valor de id_Discapacidad:', discapacidadField.val());
+
+            const discapacidadName = discapacidadField.find('option:selected').text();
+
+            if (discapacidadName === 'Si') {  // Corregir el valor 'Si'
+                tipoDiscapacidadField.show();
+            } else {
+                tipoDiscapacidadField.hide();
+            }
+        });
+
+        // Mostrar u ocultar el campo al cargar la página
+        const discapacidadName = discapacidadField.find('option:selected').text();
+        if (discapacidadName === 'Si') {  // Corregir el valor 'Si'
+            tipoDiscapacidadField.show();
+        } else {
+            tipoDiscapacidadField.hide();
+        }
+    });
+</script>
+
+    
+    
+
 {% endblock %}
 
 {% endblock %}

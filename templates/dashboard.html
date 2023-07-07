@@ -17,9 +17,7 @@
               </div>
               <div class="col-lg-3 d-flex">
                   <button class="btn btn-primary w-100 align-self-center"> Descargar reporte</button>
-
               </div>
-
           </div>
       </div>
   </section>
@@ -57,14 +55,13 @@
         </div>
     </div>
 </section>
-
 <br>
 <div class="container">
   <div class="row">
     <div class="col-lg-4">
       <div class="card">
         <div class="card-header">
-          Card 1
+          Trabajadores con capacidades diferentes
         </div>
         <div class="card-body">
           <div id="grafico-torta-disability"></div>
@@ -74,17 +71,17 @@
     <div class="col-lg-4">
       <div class="card">
         <div class="card-header">
-          Información de la compañía seleccionada
+          Proporción de personas con y sin discapacidad
         </div>
         <div class="card-body">
-          <ul id="company-info-list"></ul>
+          <div id="grafico-torta-disabilitycount"></div>
         </div>
       </div>
     </div>
     <div class="col-lg-4">
       <div class="card">
         <div class="card-header">
-          Distribución por sexo
+          Distribución de genero
         </div>
         <div class="card-body">
           <div id="grafico-torta"></div>
@@ -95,7 +92,6 @@
 </div>
 <br>
 
-
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
 <!-- Agrega el enlace a la biblioteca html2pdf -->
@@ -105,7 +101,8 @@
 <script>
   var graficoTorta = document.getElementById('grafico-torta');
   var graficoTortadisability = document.getElementById('grafico-torta-disability');
-  var companyInfoList = document.getElementById('company-info-list');
+  var graficoTortadisabilitycount = document.getElementById('grafico-torta-disabilitycount');
+
   var companyworker = document.getElementById('companyworker-list');
   var companyworkerplace = document.getElementById('companyworkerplace-list');
   var companyworkeractive = document.getElementById('companyworkeractive-list');
@@ -138,29 +135,36 @@
     Plotly.newPlot(graficoTortadisability, pieData, pieLayout);
   }
 
-  // Limpia la lista de información de la compañía
-  function updateCompanyInfoList(results) {
-    companyInfoList.innerHTML = ''; // Limpia la lista de información de la compañía
-
-    for (const element of results) {
-      var company = element;
-      var listItem = document.createElement('li');
-      listItem.textContent = 'Nombre de la compañía: ' + company.name_company + ', Trabajadores: ' + company.worker_count + ', Hombres: '  + company.male_count + ', Mujeres: '+ company.female_count;
-      companyInfoList.appendChild(listItem);
-    }
+  function updatePieChartDisabilityCount(data) {
+    var pieData = [{
+      labels: data.labels,
+      values: data.values,
+      type: 'pie'
+    }];
+  
+    var pieLayout = {
+      showlegend: true
+    };
+  
+    Plotly.newPlot(graficoTortadisabilitycount, pieData, pieLayout);
   }
+
+
 
   // Cuenta trabajadores
   function updateCompanyWorkers(results) {
-    companyworker.innerHTML = ''; // Limpia la lista de información de la compañía
-
+    var companyworkerList = document.getElementById('companyworker-list');
+    companyworkerList.innerHTML = ''; // Limpia el contenido actual
+  
     for (const element of results) {
       var company = element;
-      var listItem = document.createElement('div');
-      listItem.textContent = company.worker_count;
-      companyworker.appendChild(listItem);
+      var workers = document.createElement('h4');
+      workers.classList.add('font-weight-bold', 'text-center');
+      workers.innerText = company.worker_count;
+      companyworkerList.appendChild(workers);
     }
   }
+  
   // Cuenta centros de trabajo
   function updateCompanyWorkerplace(results) {
     companyworkerplace.innerHTML = ''; // Limpia la lista de información de la compañía
@@ -174,13 +178,15 @@
   }
   // Cuenta trabajadores activos
   function updateCompanyWorkeractive(results) {
-    companyworkeractive.innerHTML = ''; // Limpia la lista de información de la compañía
-
+    var companyworkeractiveList = document.getElementById('companyworkeractive-list');
+    companyworkeractiveList.innerHTML = ''; // Limpia el contenido actual
+  
     for (const element of results) {
       var company = element;
-      var listItem = document.createElement('div');
-      listItem.textContent = company.workerplace_count_act;
-      companyworkeractive.appendChild(listItem);
+      var workeractive = document.createElement('h4');
+      workeractive.classList.add('font-weight-bold', 'text-center');
+      workeractive.innerText = company.workerplace_count_act;
+      companyworkeractiveList.appendChild(workeractive);
     }
   }
 
@@ -259,10 +265,22 @@
               }, 0)
             ]
           };
+
+          var pieChartDataDisabilityCount = {
+            labels: ['Si', 'No'],
+            values: [
+            results.reduce(function(total, result) {
+              return total + result.disability_count_yes;
+            }, 0),
+            results.reduce(function(total, result) {
+              return total + result.disability_count_no;  
+            }, 0)
+          ]
+        };
         
           updatePieChart(pieChartData);
           updatePieChartDisability(pieChartDataDisability);
-          updateCompanyInfoList(results);
+          updatePieChartDisabilityCount(pieChartDataDisabilityCount);
           updateCompanyWorkers(results);
           updateCompanyWorkerplace(results);
           updateCompanyWorkeractive(results);
