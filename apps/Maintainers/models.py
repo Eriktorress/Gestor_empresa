@@ -22,7 +22,7 @@ class Discapacidad(models.Model):
     name = models.CharField(verbose_name='Discapacidad', max_length=2)
 
     def __str__(self):
-        return f"{self.name}"
+        return self.name
 
 # Modelo de Tipo Discapacidad.
 class Tipodiscapacidad(models.Model):

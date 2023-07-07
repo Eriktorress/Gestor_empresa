@@ -5,7 +5,6 @@ from .models import Worker
 from .forms import WorkerForm
 from apps.WorkerDocuments.models import WorkerDocuments
 
-# Create your views here.
 
 #Listar company de trabajos
 def list_worker(request):
@@ -19,7 +18,8 @@ def form_worker(request):
     data = {
         'form': WorkerForm(),
     }
-
+    
+    
     if request.method == 'POST':
         formulario_worker = WorkerForm (data=request.POST)
         if formulario_worker.is_valid():
@@ -29,6 +29,8 @@ def form_worker(request):
         else:
             data["form"] = formulario_worker
             messages.error(request, "Error al guardar el formulario")
+            
+
     return render(request, 'Worker/form_worker.html', data)
 
 #Editar Trabajador
