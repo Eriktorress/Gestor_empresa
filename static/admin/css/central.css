@@ -166,3 +166,26 @@ a.selected{
        left: -80px;
    }
 }
+@media (max-width: 768px) {
+   /* Estilos para pantallas pequeñas */
+   /* Aquí puedes modificar los estilos para que se ajusten adecuadamente en pantallas pequeñas */
+   .usuario img{
+      position: absolute;
+      width: 40px;
+      height: 100%;
+      top: 0;
+      left: -40;
+      object-fit: cover;
+   }
+ }
+ 
+ @media (min-width: 769px) and (max-width: 1200px) {
+   /* Estilos para pantallas medianas */
+   /* Aquí puedes modificar los estilos para que se ajusten adecuadamente en pantallas medianas */
+ }
+ 
+ @media (min-width: 1201px) {
+   /* Estilos para pantallas grandes */
+   /* Aquí puedes modificar los estilos para que se ajusten adecuadamente en pantallas grandes */
+ }
+ 
