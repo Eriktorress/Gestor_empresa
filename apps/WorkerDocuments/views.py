@@ -2,15 +2,17 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.shortcuts import render
 from .forms import WorkerDocumentsForm,WorkerDocuments
 from django.contrib import messages
-
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
+@login_required
 def list_workdoc(request):
     listado = WorkerDocuments.objects.all();
     return render(request, 'WorkerDocuments/list_workdoc.html', {'listado':listado})
 
 #Formulario 
+@login_required
 def form_workdoc(request):
     data = {
         'form': WorkerDocumentsForm()
@@ -29,6 +31,7 @@ def form_workdoc(request):
 
 
 #Editar 
+@login_required
 def edit_workdoc(request, id):
     document = get_object_or_404(WorkerDocuments, id=id)
     data = {
@@ -45,7 +48,7 @@ def edit_workdoc(request, id):
 
     return render(request, 'WorkerDocuments/edit_workdoc.html', data)
 
-
+@login_required
 def delet_workdoc(request, id):
     document = get_object_or_404(WorkerDocuments, id=id)
     document.delete()

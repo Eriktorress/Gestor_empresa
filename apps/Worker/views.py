@@ -4,15 +4,17 @@ from django.shortcuts import render
 from .models import Worker
 from .forms import WorkerForm
 from apps.WorkerDocuments.models import WorkerDocuments
-
+from django.contrib.auth.decorators import login_required
 
 #Listar company de trabajos
+@login_required
 def list_worker(request):
     listado = Worker.objects.all();
     
     return render(request, 'Worker/list_worker.html', {'listado':listado})
 
 #Formulario centro de trabajo
+@login_required
 def form_worker(request):
 
     data = {
@@ -34,6 +36,7 @@ def form_worker(request):
     return render(request, 'Worker/form_worker.html', data)
 
 #Editar Trabajador
+@login_required
 def edit_worker(request,id):
     worker = get_object_or_404(Worker, id_worker=id)
     workerdocuments = WorkerDocuments.objects.filter(id_worker=id)
@@ -56,7 +59,7 @@ def edit_worker(request,id):
     return render(request, 'Worker/edit_worker.html', context)
 
 #Editar eliminar Trabajador
-
+@login_required
 def delet_worker(request, id):
     worker = get_object_or_404(Worker, id_worker=id)
     worker.delete()
@@ -64,6 +67,7 @@ def delet_worker(request, id):
     return redirect(to="list_worker")
 
 #Filtrado de Documentos del trabajador
+@login_required
 def worker_documents(request, worker_id):
     worker = get_object_or_404(Worker, id_worker=worker_id)
     workerdocuments = WorkerDocuments.objects.filter(id_worker_id=worker_id)

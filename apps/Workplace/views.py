@@ -3,13 +3,17 @@ from django.shortcuts import render
 from .models import Workplace
 from .forms import WorkplaceForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+
 
 #Listar centros de trabajo
+@login_required
 def list_workplace(request):
     listado = Workplace.objects.all();
     return render(request, 'Workplace/list_workplace.html', {'listado':listado})
 
 #Formulario centro de trabajo
+@login_required
 def form_workplace(request):
 
     data = {
@@ -28,6 +32,7 @@ def form_workplace(request):
     return render(request, 'Workplace/form_workplace.html', data)
 
 #Editar centro de trabajo
+@login_required
 def edit_workplace(request, id):
     workplace= get_object_or_404(Workplace, id_workplace=id)
 
@@ -47,7 +52,7 @@ def edit_workplace(request, id):
     return render (request, 'Workplace/edit_workplace.html', data)
 
 #Editar eliminar centro
-
+@login_required
 def delet_workplace(request, id):
     workplace = get_object_or_404(Workplace, id_workplace=id)
     workplace.delete()

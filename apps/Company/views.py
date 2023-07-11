@@ -9,13 +9,17 @@ from django.http import JsonResponse
 from django.db.models import Q
 import plotly.graph_objects as go
 from django.db.models import Count
+from django.contrib.auth.decorators import login_required
+
 
 #Listar empresa
+@login_required
 def list_company(request):
     listado = Company.objects.all();
     return render(request, 'Company/list_company.html', {'listado':listado})
 
 #Formulario empresa
+@login_required
 def form_company(request):
 
     data = {
@@ -34,7 +38,7 @@ def form_company(request):
     return render(request, 'Company/form_company.html', data)
 
 #Eliminar empresa
-
+@login_required
 def delet_company(request, id):
     company = get_object_or_404(Company, id_company=id)
     company.delete()
@@ -42,6 +46,7 @@ def delet_company(request, id):
     return redirect(to="list_company")
 
 #Editar empresa
+@login_required
 def edit_company(request, id):
     company = get_object_or_404(Company, id_company=id)
     workplaces = Workplace.objects.filter(id_company=id)
@@ -65,7 +70,7 @@ def edit_company(request, id):
 
 
 #Filtrado de centros de la empresa 
-
+@login_required
 def company_workplaces(request, company_id):
     company = get_object_or_404(Company, id_company=company_id)
     workplaces = Workplace.objects.filter(id_company=company_id)
@@ -77,7 +82,7 @@ def company_workplaces(request, company_id):
 
 
 #Filtrado de trabajadores de la empresa 
-
+@login_required
 def company_workers(request, company_id):
     company = get_object_or_404(Company, id_company=company_id)
     workers = Worker.objects.filter(id_company=company_id)
@@ -88,7 +93,7 @@ def company_workers(request, company_id):
     return render(request, 'Company/company_workers.html', context)
 
 #Buscador de 
-
+@login_required
 def search_company(request):
     id_company = request.GET.get('id_company')
     if id_company is None:

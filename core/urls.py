@@ -8,13 +8,15 @@ from apps.Workplace.views import list_workplace, form_workplace, edit_workplace,
 from apps.Worker.views import list_worker, form_worker,edit_worker,delet_worker,worker_documents
 from apps.WorkerDocuments.views import list_workdoc,form_workdoc,edit_workdoc,delet_workdoc
 from apps.Maintainers.views import dashboard
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path ('', dashboard, name='dashboard'),
     
     #-------- Users --------
-    path('signin/', signin, name='signin'),
+
+    path('signin/', auth_views.LoginView.as_view(template_name='User/signin.html'), name='signin'),
     path('logout/', signout, name='logout'),
     path('signup/', signup, name='signup'),
     
