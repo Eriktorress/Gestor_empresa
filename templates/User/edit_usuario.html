@@ -1,38 +1,80 @@
 {% extends "base.html" %}
 {% load static %}
+{% load custom_tags %}
 {% block content %}
+<html>
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trirong">
+    <link rel="stylesheet" href="{% static 'admin/css/form_worker.css' %}">
+</head>
 
-{% load crispy_forms_tags %}
+<body class="body">
+    <main>
+        <div>
+            <h2 style=" border: 30px solid rgb(255, 255, 255);" class="titulo">Formulario de usuario</h2>
+            <hr>
+            <form action="" method="post" class="/editar_usuario/">
+
+                {% csrf_token %}
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="{{ form.name.id_for_label }}">Nombre</label>
+                        <br>
+                        {{ form.username|add_class:'form-control'}}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="{{ form.lastname.id_for_label }}">Apellido Paterno</label>
+                        {{ form.first_name|add_class:'form-control' }}
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="{{ form.name.id_for_label }}">Apellido Materno</label>
+                        <br>
+                        {{ form.last_name|add_class:'form-control'}}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="{{ form.name.id_for_label }}">Email</label>
+                        <br>
+                        {{ form.email|add_class:'form-control' }}
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="{{ form.name.id_for_label }}">Contraseña</label>
+                        <br>
+                        <input type="password" name="password" class="form-control" />
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="{{ form.name.id_for_label }}">Activo</label>
+                        <br>
+                        {{ form.is_active }}
+                    </div>
+                </div>
+                <br>
 
 
+                <hr>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" id="btnEnviar" class="btn btn-primary btn-sm">GUARDAR</button>
+                    &nbsp;
+                    <a href="{% url 'list_usua' %}">
+                        <button type="button" class="btn btn-secondary btn-sm">CANCELAR</button>
+                    </a>
+                </div>
 
-<div class="row">
-    <div class="col-12 col-md-7  ">
-        <h1 style="border: 50px solid rgb(255, 255, 255);">Editar usuario</h1>
-        <hr>
-        <form style="border: 50px solid rgb(255, 255, 255);" action="" class="formulario_Usuario " method="post">
+            </form>
 
-            {% csrf_token %}
+            {{ mensaje }}
 
-            {{ form | crispy }}
-
-            <br>
-
-            <div class="d-flex ">
-                <button type="submit" class="btn btn-primary"> Editar</button>
-                &nbsp;
-                <a href="{% url 'list_usua'%}"> 
-                    <button type="button"class="btn btn-secondary">Cancelar</button>
-                </a>
-
-            </div>
-        </form>
-
-        {{mensaje}}
-
-    </div>
-
-</div>
-
+        </div>
+    
+</main>
+</body>
+</html>
+{% block js %}
+{% endblock %}
 
 {% endblock %}

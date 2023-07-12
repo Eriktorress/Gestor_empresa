@@ -4,9 +4,11 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.contrib import messages
+from django.contrib.auth.forms import UserChangeForm
+from .forms import CustomUserChangeForm
+
 
 # Create your views here.
-
 def signup(request):
     if request.method == 'GET':
         return render(request, 'User/signup.html', {"form": UserCreationForm})
@@ -68,22 +70,18 @@ def form_usuario(request):
 
 #Editar usuario
 def editar_usuario(request, id):
-    usuario= get_object_or_404(User, id=id)
+    usuario = get_object_or_404(User, id=id)
 
-    data = {
-        'form': UserCreationForm(instance=usuario)
-    }
-    
     if request.method == 'POST':
-        formulario = UserCreationForm (data=request.POST, instance=usuario)
+        formulario = CustomUserChangeForm(data=request.POST, instance=usuario)
         if formulario.is_valid():
             formulario.save()
             messages.success(request, "Modificado correctamente")
-            return redirect(to="list_usua")
-        data["form"] = formulario
-  
+            return redirect('list_usua')
+    else:
+        formulario = CustomUserChangeForm(instance=usuario)
 
-    return render (request, 'User/edit_usuario.html', data)
+    return render(request, 'User/edit_usuario.html', {'form': formulario})
 
 #Eliminar usuario
 def eliminar_usuario(request, id):

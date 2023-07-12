@@ -22,35 +22,18 @@
                         <br>
                         {{ form.username|add_class:'form-control'}}
                     </div>
-                    <div class="form-group col-md-6">
-                        <label for="{{ form.name.id_for_label }}">Apellido Paterno:</label>
-                        <br>
-                        {{ form.first_name|add_class:'form-control'}}
-                    </div>
                 </div>
                 <br>
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label for="{{ form.name.id_for_label }}">Apellido Materno:</label>
-                        <br>
-                        {{ form.last_name|add_class:'form-control'}}
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="{{ form.name.id_for_label }}">Estado del usuario:</label>
-                        <br>
-                        {{ form.is_active|add_class:'form-control' }}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group col-md-6">
-                        <label for="{{ form.name.id_for_label }}">Correo electrónico</label>
-                        <br>
-                        {{ form.email|add_class:'form-control'}}
-                    </div>
-                    <div class="form-group col-md-6">
                         <label for="{{ form.name.id_for_label }}">Contraseña</label>
                         <br>
-                        {{ form.password|add_class:'form-control' }}
+                        {{ form.password1|add_class:'form-control'}}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="{{ form.name.id_for_label }}"> Repita contraseña Contraseña</label>
+                        <br>
+                        {{ form.password2|add_class:'form-control' }}
                     </div>
                 </div>
 
