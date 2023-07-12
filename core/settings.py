@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'chartjs',
+    'apps.Users',
     'apps.Company',
     'apps.Maintainers',
     'apps.Workplace',
@@ -99,7 +100,7 @@ DATABASES = {
             }
         }
 
-
+AUTH_USER_MODEL = 'Users.CustomUser'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

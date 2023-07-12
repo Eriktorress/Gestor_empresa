@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path, re_path, include
 from apps.Company.views import delet_company, form_company,list_company,edit_company,\
     company_workplaces,company_workers, search_company
-from apps.Users.views import signup,signout, signin
+from apps.Users.views import signup,signout, list_usuarios,eliminar_usuario,editar_usuario,form_usuario
 from apps.Workplace.views import list_workplace, form_workplace, edit_workplace,\
     delet_workplace
 from apps.Worker.views import list_worker, form_worker,edit_worker,delet_worker,worker_documents
@@ -20,6 +20,11 @@ urlpatterns = [
     path('logout/', signout, name='logout'),
     path('signup/', signup, name='signup'),
     
+    #-------- Usuarios --------
+    path ('Listado_usuarios/', list_usuarios, name='list_usua'),
+    path ('Formulario_Usuario/', form_usuario, name='form_Usuario'),
+    path ('Editar_usuario/<id>/', editar_usuario, name='edit_usuario'),
+    path ('Eliminar_usuario/<id>/', eliminar_usuario, name='elim_usuario'),
     
     #-------- Commpany --------
     path ('List_company/', list_company, name='list_company'),

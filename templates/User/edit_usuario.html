@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+
+
+<div class="row">
+    <div class="col-12 col-md-7  ">
+        <h1 style="border: 50px solid rgb(255, 255, 255);">Editar usuario</h1>
+        <hr>
+        <form style="border: 50px solid rgb(255, 255, 255);" action="" class="formulario_Usuario " method="post">
+
+            {% csrf_token %}
+
+            {{ form | crispy }}
+
+            <br>
+
+            <div class="d-flex ">
+                <button type="submit" class="btn btn-primary"> Editar</button>
+                &nbsp;
+                <a href="{% url 'list_usua'%}"> 
+                    <button type="button"class="btn btn-secondary">Cancelar</button>
+                </a>
+
+            </div>
+        </form>
+
+        {{mensaje}}
+
+    </div>
+
+</div>
+
+
+{% endblock %}

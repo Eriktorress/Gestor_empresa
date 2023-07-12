@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load static %}
+{% load custom_tags %}
+{% block content %}
+<html>
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trirong">
+    <link rel="stylesheet" href="{% static 'admin/css/form_worker.css' %}">
+</head>
+
+<body class="body">
+    <main>
+        <div>
+            <h2 style=" border: 30px solid rgb(255, 255, 255);" class="titulo">Formulario de usuarios</h2>
+            <hr>
+            <form action="" method="post" class="/form_usuario/">
+
+                {% csrf_token %}
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="{{ form.name.id_for_label }}">Nombre</label>
+                        <br>
+                        {{ form.username|add_class:'form-control'}}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="{{ form.name.id_for_label }}">Apellido Paterno:</label>
+                        <br>
+                        {{ form.first_name|add_class:'form-control'}}
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="{{ form.name.id_for_label }}">Apellido Materno:</label>
+                        <br>
+                        {{ form.last_name|add_class:'form-control'}}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="{{ form.name.id_for_label }}">Estado del usuario:</label>
+                        <br>
+                        {{ form.is_active|add_class:'form-control' }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="{{ form.name.id_for_label }}">Correo electrónico</label>
+                        <br>
+                        {{ form.email|add_class:'form-control'}}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="{{ form.name.id_for_label }}">Contraseña</label>
+                        <br>
+                        {{ form.password|add_class:'form-control' }}
+                    </div>
+                </div>
+
+
+                <hr>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" id="btnEnviar" class="btn btn-primary btn-sm">GUARDAR</button>
+                    &nbsp;
+                    <a href="{% url 'list_usua'%}">
+                        <button type="button" class="btn btn-secondary btn-sm">CANCELAR</button>
+                    </a>
+                </div>
+
+            </form>
+
+            {{ mensaje }}
+
+        </div>
+    
+</main>
+</body>
+</html>
+{% block js %}
+{% endblock %}
+
+{% endblock %}
