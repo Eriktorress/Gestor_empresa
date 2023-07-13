@@ -41,9 +41,9 @@
     </div>
 
     <section style=" border-left:30px solid rgb(255, 255, 255);" class="webdesigntuts-workshop;">
-        <form action="" method="">
-            <input type="search" placeholder="Ingrese Busqueda">
-            <button class="btn btn-secondary"> <i class="icon ion-md-search"></i> Buscar</button>
+        <form action="{% url 'buscar_company' %}" method="GET">
+            <input type="search" name="q" placeholder="Ingrese Búsqueda">
+            <button class="btn btn-secondary"><i class="icon ion-md-search"></i> Buscar</button>
         </form>
     </section>
         <tr>

@@ -36,17 +36,17 @@
    
         <section style="border-left: 30px solid rgb(255, 255, 255);" class="webdesigntuts-workshop">
             
-            <form action="" method="">
-                <input type="search" placeholder="Ingrese Busqueda">
+            <form action="{% url 'buscar_usuarios' %}" method="GET">
+                <input type="search" name="q" placeholder="Ingrese Búsqueda">
                 <button class="btn btn-secondary"><i class="icon ion-md-search"></i> Buscar</button>
-                
             </form>
+            
 
         </section>
         <tr>
             <th scope="col"> Nombre</th>
             <th scope="col"> Email</th>
-            <th scope="col"> Activo</th>
+            <th scope="col"> Estado</th>
             <th scope="col"> Acciones</th>
         </tr>
     </thead>
@@ -55,7 +55,7 @@
         <tr>
             <th>{{Usuarios.username}}</th>
             <th>{{Usuarios.email}}</th>
-            <th>{{Usuarios.is_active}}</th>
+            <th>{% if Usuarios.is_active %}Activo{% else %}Inactivo{% endif %}</th>
             <td><a href="{% url 'edit_usuario' Usuarios.id %}" class="btn btn-sm btn-block btn-info"><i class="icon ion-md-create"></i> Editar</a>
                 <a href="#" onclick="eliminarUsuarios({{ Usuarios.id }})"
                     class="btn btn-sm btn-block btn-danger"> Eliminar</a></td>

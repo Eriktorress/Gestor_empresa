@@ -4,45 +4,60 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.contrib import messages
-from django.contrib.auth.forms import UserChangeForm
 from .forms import CustomUserChangeForm
-
 
 # Create your views here.
 def signup(request):
     if request.method == 'GET':
-        return render(request, 'User/signup.html', {"form": UserCreationForm})
+        form = UserCreationForm()
+        return render(request, 'User/signup.html', {"form": form})
     else:
-
-        if request.POST["password1"] == request.POST["password2"]:
-            try:
-                user = User.objects.create_user(
-                    request.POST["username"], password=request.POST["password1"])
-                user.save()
-                login(request, user)
-                return redirect('signin')
-            except IntegrityError:
-                return render(request, 'signup.html', {"form": UserCreationForm, "error": "Username already exists."})
-
-        return render(request, 'signup.html', {"form": UserCreationForm, "error": "Passwords did not match."})
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            if form.cleaned_data["password1"] == form.cleaned_data["password2"]:
+                try:
+                    user = User.objects.create_user(
+                        form.cleaned_data["username"], password=form.cleaned_data["password1"])
+                    user.save()
+                    messages.success(request, 'Registro exitoso. ¡Bienvenido!')
+                    return redirect('signin')
+                except IntegrityError:
+                    form.add_error('username', 'El nombre de usuario ya existe.')
+            else:
+                form.add_error('password2', 'Las contraseñas no coinciden.')
+        
+        # Si llegamos aquí, significa que hay errores en el formulario
+        messages.error(request, 'Ocurrió un error en el formulario.')
+        return render(request, 'User/signup.html', {"form": form})
 
 def signout(request):
     logout(request)
     return redirect('signin')
 
 
+
+
 def signin(request):
     if request.method == 'GET':
-        return render(request, 'User/signin.html', {"form": AuthenticationForm})
+        return render(request, 'User/signin.html', {"form": AuthenticationForm()})
     else:
-        user = authenticate(
-            request, username=request.POST['username'], password=request.POST['password'])
-            
-        if user is None:
-            return render(request, 'signin.html', {"form": AuthenticationForm, "error": "Username or password is incorrect."})
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('dashboard')
+            else:
+                messages.error(request, 'Usuario o contraseña incorrectos. Por favor, intenta nuevamente.')
+        else:
+            messages.error(request, 'Ocurrió un error en el formulario.')
+        
+        return render(request, 'User/signin.html', {"form": form})
 
-        login(request, user)
-        return redirect('dashboard')
+
+
 
 #-------- Usuarios -----------------------------------------------
 #Listar usuarios
@@ -89,3 +104,14 @@ def eliminar_usuario(request, id):
     usuarios.delete()
     messages.success(request, "Eliminado correctamente")
     return redirect(to="list_usua")
+
+
+def buscar_usuarios(request):
+    query = request.GET.get('q')
+    usuarios = User.objects.filter(username__icontains=query) if query else User.objects.all()
+    
+    context = {
+        'listado': usuarios
+    }
+    
+    return render(request, 'User/list_usuario.html', context)

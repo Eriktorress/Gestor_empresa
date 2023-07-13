@@ -138,5 +138,12 @@ def search_company(request):
 
 
 
-
-
+def buscar_company(request):
+    query = request.GET.get('q')
+    companies = Company.objects.filter(name_company__icontains=query) if query else Company.objects.all()
+    
+    context = {
+        'listado': companies
+    }
+    
+    return render(request, 'Company/list_company.html', context)

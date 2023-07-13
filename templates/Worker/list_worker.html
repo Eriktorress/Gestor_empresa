@@ -1,5 +1,6 @@
 {% extends "base.html" %}
-{% block js %}  <!-- bloque de JS--> 
+{% block content %}
+{% block js %}
 <script>
     function deleteworker(id_worker) {
         Swal.fire({
@@ -9,61 +10,39 @@
             showCancelButton: true,
             cancelButtontext: '',
             confirmButtonText: 'Si, Eliminar!',
-            confirmButtonColor:  '#d33',
-            cancelButtonColor:'#3085d6',
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
         })
         .then(function(result) {
             if (result.isConfirmed) {
-                window.location.href = "/Delete_worker/"+id_worker+"/"
+                window.location.href = "/Delete_worker/" + id_worker + "/"
             }
         })
-
     }
 </script>
 {% endblock %}
 
-{%block css%}
-<link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
-{% endblock %}
+<table style="border: 30px solid rgb(255, 255, 255);" class="table table-striped table-hover table-responsive-sm">
+    <h1 style="border: 30px solid rgb(255, 255, 255);">Listado de Trabajadores</h1>
 
+    <thead class="table-dark">
+        <hr>
+        <div style="border-right: 30px solid rgb(255, 255, 255);" class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a href="{% url 'form_worker' %}">
+                <button type="button" class="btn btn-success"> Añadir </button>
+            </a>
+            <a href="{% url 'download_excel' %}"  class="btn btn-primary">
+                <i class="fa fa-download"></i> Exportar a Excel
+            </a>
+        </div>
 
+        <section style="border-left: 30px solid rgb(255, 255, 255);" class="webdesigntuts-workshop;">
+            <form action="{% url 'buscar_worker' %}" method="GET">
+                <input type="search" name="q" placeholder="Ingrese Búsqueda">
+                <button class="btn btn-secondary"><i class="icon ion-md-search"></i> Buscar</button>
+            </form>
+        </section>
 
-{% block content %}
-
-<table style=" border: 30px solid rgb(255, 255, 255);" class="table table-striped table-hover table-responsive-sm">
-     <!-- H1--> 
-    <h1 style=" border: 30px solid rgb(255, 255, 255);">Listado de Trabajadores</h1>
-
-    <thead class="table-dark">  
-<hr>
-
-<!-- boton de Nuevo centro-->
-<div  style="border-right: 30px solid rgb(255, 255, 255);" class="d-grid gap-2 d-md-flex justify-content-md-end">
-    <a href="{% url 'form_worker'%}"><button type="button" class="btn btn-success">
-        Añadir 
-    </button></a>
-    
-  </div>
-  <nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center">
-      <li class="page-item disabled">
-        <a class="page-link" href="#" tabindex="-1">Previous</a>
-      </li>
-      <li class="page-item"><a class="page-link" href="#">1</a></li>
-      <li class="page-item"><a class="page-link" href="#">2</a></li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
-      <li class="page-item">
-        <a class="page-link" href="#">Next</a>
-      </li>
-    </ul>
-  </nav>
-
-<section style=" border-left:30px solid rgb(255, 255, 255);" class="webdesigntuts-workshop;">
-    <form action="" method="">
-        <input type="search" placeholder="Ingrese Busqueda">
-        <button class="btn btn-secondary"> <i class="icon ion-md-search"></i> Buscar</button>
-    </form>
-</section>
         <tr>
             <th scope="col"> Id</th>
             <th scope="col"> Nombres</th>
@@ -90,29 +69,27 @@
             <td>{{Worker.comuna}}</td>
             <td>{{Worker.phone}}</td>
             <td>{{Worker.email}}</td>
-            <td><a href="{% url 'edit_worker' Worker.id_worker %}" 
-                class="btn btn-sm btn-block btn-info">
-                Editar
-            </a>
-            <a href="#" onclick="deleteworker ({{ Worker.id_worker }})"
-                class="btn btn-sm btn-block btn-danger">
-                Eliminar
-            </a>
+            <td>
+                <a href="{% url 'edit_worker' Worker.id_worker %}" class="btn btn-sm btn-block btn-info">
+                    Editar
+                </a>
+                <a href="#" onclick="deleteworker({{ Worker.id_worker }})" class="btn btn-sm btn-block btn-danger">
+                    Eliminar
+                </a>
             </td>
         </tr>
         {% endfor %}
-
     </tbody>
 </table>
 
 <footer>
     <div class="d-flex justify-content-center">
-        <a href="{% url 'dashboard' %}"> <button type="button" type="button"class="btn btn-secondary">
-            Volver
-        </button></a>
+        <a href="{% url 'dashboard' %}">
+            <button type="button" class="btn btn-secondary">
+                <i class="icon ion-md-arrow-back"></i> Volver
+            </button>
+        </a>
     </div>
 </footer>
 
 {% endblock %}
-
-</html>
