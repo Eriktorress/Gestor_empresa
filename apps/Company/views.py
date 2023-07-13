@@ -10,7 +10,8 @@ from django.db.models import Q
 import plotly.graph_objects as go
 from django.db.models import Count
 from django.contrib.auth.decorators import login_required
-
+from django.db.models import ProtectedError
+from django.db import IntegrityError
 
 #Listar empresa
 @login_required
@@ -41,9 +42,20 @@ def form_company(request):
 @login_required
 def delet_company(request, id):
     company = get_object_or_404(Company, id_company=id)
-    company.delete()
-    messages.success(request, "Eliminado correctamente")
-    return redirect(to="list_company")
+    if company.worker.exists():
+        error_message = f"No se puede eliminar la empresa. La empresa está siendo referenciada por uno o más trabajadores."
+        messages.error(request, error_message)
+        return redirect('list_company')
+
+    try:
+        company.delete()
+        messages.success(request, "Empresa eliminada correctamente")
+        return redirect('list_company')
+    except IntegrityError:
+        error_message = f"No se puede eliminar la empresa debido a un error en la integridad de datos."
+        messages.error(request, error_message)
+        return redirect('list_company')
+
 
 #Editar empresa
 @login_required

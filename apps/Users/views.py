@@ -78,7 +78,7 @@ def form_usuario(request):
         if formulario3.is_valid():
             formulario3.save()
             messages.success(request, "Registro agregado correctamente")
-            return redirect(to="list_usua")
+            return redirect('list_usua')
         else:
             data["form"] = formulario3
     return render(request, 'User/form_usuario.html', data)

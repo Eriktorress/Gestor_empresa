@@ -30,37 +30,3 @@ window.addEventListener("resize", function() {
     side_menu.classList.add("menu__side_move");
   }
 });
-
-
-// Obtén una referencia al botón "Descargar reporte"
-var descargarBoton = document.querySelector('.btn.btn-primary');
-
-// Agrega un evento de clic al botón
-descargarBoton.addEventListener('click', function() {
-  // Obtiene el contenido HTML del elemento "content"
-  var contenidoHTML = document.getElementById('content').innerHTML;
-
-  // Crea un objeto Blob con el contenido HTML
-  var blob = new Blob([contenidoHTML], { type: 'text/html' });
-
-  // Crea una URL para el Blob
-  var url = URL.createObjectURL(blob);
-
-  // Crea un enlace para descargar el archivo
-  var enlaceDescarga = document.createElement('a');
-  enlaceDescarga.href = url;
-  enlaceDescarga.download = 'reporte.html';
-  enlaceDescarga.style.display = 'none';
-
-  // Agrega el enlace al documento
-  document.body.appendChild(enlaceDescarga);
-
-  // Simula un clic en el enlace de descarga
-  enlaceDescarga.click();
-
-  // Remueve el enlace del documento
-  document.body.removeChild(enlaceDescarga);
-
-  // Libera el objeto Blob
-  URL.revokeObjectURL(url);
-});
